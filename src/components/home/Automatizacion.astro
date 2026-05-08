@@ -1,0 +1,183 @@
+---
+const features = [
+  {
+    badge: "70%",
+    text: "Menos carga operativa manual. <strong>Tu equipo deja de digitar</strong> y empieza a analizar.",
+  },
+  {
+    badge: "24/7",
+    text: "Conciliación bancaria automática con BCP, BBVA, Interbank y Scotiabank.",
+  },
+  {
+    badge: "IA",
+    text: "Clasificación inteligente de comprobantes electrónicos directo del CPE SUNAT.",
+  },
+];
+
+const grid = [
+  // row 1
+  {
+    type: "ENTRADA",
+    title: "Facturación electrónica",
+    sub: "CPE · 1,248 docs/mes",
+    highlight: false,
+  },
+  {
+    type: "ENTRADA",
+    title: "Bancos",
+    sub: "BCP · BBVA · IBK",
+    highlight: false,
+  },
+  {
+    type: "ENTRADA",
+    title: "POS y e-commerce",
+    sub: "Niubiz · Culqi · Shopify",
+    highlight: false,
+  },
+  // row 2
+  {
+    type: "ENTRADA",
+    title: "Planilla",
+    sub: "T-Registro · PLAME",
+    highlight: false,
+  },
+  {
+    type: "MOTOR EMMERGIA",
+    title: "Clasificación +\nconciliación +\nlibros",
+    sub: "IA + reglas contables peruanas",
+    highlight: true,
+  },
+  {
+    type: "SALIDA",
+    title: "Reportes al socio",
+    sub: "Diario · semanal",
+    highlight: false,
+  },
+  // row 3
+  {
+    type: "SALIDA",
+    title: "PLE / SUNAT",
+    sub: "Libros electrónicos",
+    highlight: false,
+  },
+  {
+    type: "SALIDA",
+    title: "Tablero en vivo",
+    sub: "KPIs financieros",
+    highlight: false,
+  },
+  {
+    type: "SALIDA",
+    title: "Alertas",
+    sub: "Vencimientos · flujo",
+    highlight: false,
+  },
+];
+---
+
+<section
+  class="max-w-[1280px] mx-auto px-8 py-24 grid grid-cols-2 items-center gap-20"
+>
+  <!-- Left -->
+  <div class="flex flex-col gap-6">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-[2px] bg-pink"></span>
+      <span
+        class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase"
+        >Automatización</span
+      >
+    </div>
+
+    <!-- Headline -->
+    <h2
+      class="font-obli text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.05] text-[var(--black)] m-0"
+    >
+      Moderniza tu<br />
+      back-office:
+      <em
+        class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
+        >de la digitación manual a la Inteligencia Artificial.</em
+      >
+    </h2>
+
+    <!-- Body -->
+    <p class="text-[0.95rem] text-[#444] leading-relaxed max-w-[480px] m-0">
+      ¿Tu equipo contable sigue perdiendo horas picando datos, conciliando
+      bancos en Excel y corrigiendo errores de tipeo?
+      <strong class="text-[var(--black)]">Eso es cosa del pasado.</strong>
+      Implementamos ecosistemas de automatización que conectan ventas, compras y bancos
+      en tiempo real.
+    </p>
+    <div
+      class="inline-flex w-fit px-4 py-2.5 italic rounded-full text-[0.8rem] font-bold"
+      style=" color: var(--orange)"
+    >
+      ~ Menos horas hombre en tareas repetitivas, más rentabilidad por empleado.
+    </div>
+    <!-- Feature list  <ul class="flex flex-col gap-4 list-none m-0 p-0">
+      {
+        features.map((f) => (
+          <li class="flex items-start gap-4">
+            <span
+              class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-[0.65rem] font-bold text-white"
+              style="background: var(--gradient-btn)"
+            >
+              {f.badge}
+            </span>
+            <p
+              class="text-[0.9rem] text-[#444] leading-relaxed m-0"
+              set:html={f.text}
+            />
+          </li>
+        ))
+      }
+    </ul> -->
+
+    <!-- CTA -->
+    <div>
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+        style="background: var(--gradient-btn)"
+      >
+        Automatizar mis procesos →
+      </a>
+    </div>
+  </div>
+
+  <!-- Right: flow grid -->
+  <div
+    class="rounded-2xl p-4 grid grid-cols-3 gap-2"
+    style="background: #1a1a24"
+  >
+    {
+      grid.map((cell) => (
+        <div
+          class={`rounded-xl p-4 flex flex-col gap-1.5 ${cell.highlight ? "" : ""}`}
+          style={
+            cell.highlight
+              ? "background: var(--gradient-btn)"
+              : "background: rgba(255,255,255,0.05)"
+          }
+        >
+          <span
+            class={`text-[0.6rem] font-bold tracking-[0.12em] uppercase ${cell.highlight ? "text-white/70" : "text-white/35"}`}
+          >
+            {cell.type}
+          </span>
+          <span
+            class={`text-[0.875rem] font-bold leading-snug whitespace-pre-line ${cell.highlight ? "text-white" : "text-white/90"}`}
+          >
+            {cell.title}
+          </span>
+          <span
+            class={`text-[0.7rem] leading-snug ${cell.highlight ? "text-white/80" : "text-white/40"}`}
+          >
+            {cell.sub}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

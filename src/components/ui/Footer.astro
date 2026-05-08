@@ -1,0 +1,130 @@
+---
+const servicios = [
+  { label: "Contabilidad", href: "#" },
+  { label: "Legal", href: "#" },
+  { label: "Automatización", href: "#" },
+];
+
+const recursos = [
+  { label: "Blog", href: "#" },
+  { label: "Calculadora tributaria", href: "#" },
+];
+
+const contacto = [
+  { label: "WhatsApp", href: "https://wa.me/51999999999" },
+  { label: "hola@emmergia.pe", href: "mailto:hola@emmergia.pe" },
+  { label: "Lima, Perú", href: "#" },
+];
+
+const legal = [
+  { label: "Términos", href: "#" },
+  { label: "Privacidad", href: "#" },
+  { label: "Cookies", href: "#" },
+];
+---
+
+<footer class="border-t border-[#eee]">
+  <!-- Main row -->
+  <div
+    class="max-w-[1280px] mx-auto px-8 py-14 grid grid-cols-[1.5fr_1fr_1fr_1fr] gap-12"
+  >
+    <!-- Brand -->
+    <div class="flex flex-col gap-4">
+      <a href="/" class="flex items-center gap-2 no-underline w-fit">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <polygon points="0,0 22,11 0,22" fill="url(#footer-grad)"></polygon>
+          <defs>
+            <linearGradient id="footer-grad" x1="0" y1="0" x2="22" y2="22">
+              <stop offset="0%" stop-color="var(--pink)"></stop>
+              <stop offset="100%" stop-color="var(--orange)"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="text-base font-bold tracking-[0.08em] text-[var(--black)]"
+          >EMMERGIA</span
+        >
+      </a>
+      <p class="text-[0.85rem] text-[#666] leading-relaxed m-0 max-w-[220px]">
+        Estudio contable de próxima generación. Contabilidad, legal y
+        automatización — integrados como un solo servicio.
+      </p>
+    </div>
+
+    <!-- Servicios -->
+    <div class="flex flex-col gap-4">
+      <span
+        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        >Servicios</span
+      >
+      <ul class="flex flex-col gap-3 list-none m-0 p-0">
+        {
+          servicios.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-[0.875rem] text-[#444] hover:text-[var(--pink)] transition-colors no-underline"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Recursos -->
+    <div class="flex flex-col gap-4">
+      <span
+        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        >Recursos</span
+      >
+      <ul class="flex flex-col gap-3 list-none m-0 p-0">
+        {
+          recursos.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-[0.875rem] text-[#444] hover:text-[var(--pink)] transition-colors no-underline"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Contacto -->
+    <div class="flex flex-col gap-4">
+      <span
+        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        >Contacto</span
+      >
+      <ul class="flex flex-col gap-3 list-none m-0 p-0">
+        {
+          contacto.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-[0.875rem] text-[#444] hover:text-[var(--pink)] transition-colors no-underline"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-[#eee]">
+    <div
+      class="max-w-[1280px] mx-auto px-8 py-5 flex items-center justify-center"
+    >
+      <span class="text-[0.78rem] text-[#aaa]">
+        © 2026 <a href="/"><strong>EMMERGIA</strong></a> · Todos los derechos reservados.
+      </span>
+    </div>
+  </div>
+</footer>

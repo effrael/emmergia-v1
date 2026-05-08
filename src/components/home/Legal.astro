@@ -1,0 +1,260 @@
+---
+const pills = [
+  { label: "Contrato laboral revisado", dot: "#F0007F" },
+  { label: "Estructura societaria", dot: "#F77C1E" },
+  { label: "Marca registrada ✓", dot: "#F0007F" },
+  { label: "Cláusula de riesgo detectada", dot: "#22c55e" },
+];
+const DURATION = 22;
+---
+
+<section
+  class="max-w-[1280px] mx-auto px-8 py-24 grid grid-cols-2 items-center gap-20"
+>
+  <!-- Left: visual -->
+  <div class="relative h-[480px] flex items-center justify-center">
+    <!-- Neural network canvas -->
+    <canvas
+      id="legal-neural"
+      width="380"
+      height="380"
+      class="absolute rounded-full"
+    ></canvas>
+
+    <!-- Circle border overlay -->
+    <div
+      class="absolute w-[380px] h-[380px] rounded-full pointer-events-none"
+      style="border: 1.5px solid rgba(240,0,127,0.22)"
+    ></div>
+
+    <!-- Orbiting pills -->
+    {
+      pills.map((pill, i) => (
+        <div
+          class="legal-orbit-wrapper"
+          style={`--orbit-delay: ${-(i / pills.length) * DURATION}s`}
+        >
+          <div class="legal-orbit-pill flex items-center gap-2 bg-white rounded-full px-4 py-2 text-[0.8rem] font-medium text-[#333] whitespace-nowrap" style="border:1px solid rgba(0,0,0,0.07); box-shadow: 0 4px 20px rgba(0,0,0,0.09)">
+            <span
+              class="w-[7px] h-[7px] rounded-full shrink-0"
+              style={`background:${pill.dot}`}
+            />
+            {pill.label}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Right: texto -->
+  <div class="flex flex-col gap-6">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-[2px] bg-pink"></span>
+      <span
+        class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase"
+        >Legal</span
+      >
+    </div>
+
+    <!-- Headline -->
+    <h2
+      class="font-obli text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.05] text-[var(--black)] m-0"
+    >
+      Blindaje legal:<br />
+      <em
+        class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
+      >
+        cimientos sólidos
+      </em><br />
+      para crecer agresivo.
+    </h2>
+
+    <!-- Body -->
+    <p class="text-[0.95rem] text-[#444] leading-relaxed max-w-[480px] m-0">
+      Un contrato mal redactado o un problema laboral mal gestionado pueden
+      destruir años de esfuerzo en un día.
+      <strong class="text-[var(--black)]"
+        >No esperes una demanda para buscar protección.</strong
+      >
+      Desde la estructura societaria hasta la protección de tu marca y relaciones
+      laborales, construimos un escudo invisible alrededor de tu patrimonio.
+    </p>
+
+    <!-- Tagline pill -->
+    <div
+      class="inline-flex w-fit px-4 py-2.5 italic rounded-full text-[0.8rem] font-bold"
+      style="color: var(--orange)"
+    >
+      ~ Seguridad jurídica en cada firma, en cada contrato, en cada paso.
+    </div>
+
+    <!-- CTA -->
+    <div>
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+        style="background: var(--gradient-btn)"
+      >
+        Proteger mi patrimonio →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .legal-orbit-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    animation: legalOrbitSpin 22s linear infinite;
+    animation-delay: var(--orbit-delay);
+  }
+
+  .legal-orbit-pill {
+    position: absolute;
+    left: 188px;
+    top: 0;
+    transform: translateY(-50%) translateX(-50%);
+    animation: legalCounterSpin 22s linear infinite;
+    animation-delay: var(--orbit-delay);
+  }
+
+  @keyframes legalOrbitSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes legalCounterSpin {
+    from {
+      transform: translateY(-50%) translateX(-50%) rotate(0deg);
+    }
+    to {
+      transform: translateY(-50%) translateX(-50%) rotate(-360deg);
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("legal-neural") as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext("2d")!;
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = W / 2;
+    const cy = H / 2;
+    const R = W / 2 - 8;
+
+    const NODE_COUNT = 22;
+    const MAX_DIST = 110;
+
+    interface Node {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      r: number;
+      phase: number;
+    }
+
+    const nodes: Node[] = Array.from({ length: NODE_COUNT }, () => {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = Math.sqrt(Math.random()) * (R - 24);
+      return {
+        x: cx + Math.cos(angle) * dist,
+        y: cy + Math.sin(angle) * dist,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: Math.random() * 2 + 1.5,
+        phase: Math.random() * Math.PI * 2,
+      };
+    });
+
+    let tick = 0;
+
+    function draw() {
+      tick++;
+      ctx.clearRect(0, 0, W, H);
+
+      // Radial background
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
+      grad.addColorStop(0, "rgba(240,0,127,0.11)");
+      grad.addColorStop(0.55, "rgba(247,124,30,0.07)");
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Update nodes — stay inside circle
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        const dx = n.x - cx;
+        const dy = n.y - cy;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d > R - 12) {
+          n.vx -= (dx / d) * 0.06;
+          n.vy -= (dy / d) * 0.06;
+        }
+      }
+
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[j].x - nodes[i].x;
+          const dy = nodes[j].y - nodes[i].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < MAX_DIST) {
+            const alpha = (1 - d / MAX_DIST) * 0.38;
+            // Blend pink → orange based on x position
+            const t = (nodes[i].x + nodes[j].x) / 2 / W;
+            const r = Math.round(240 + (247 - 240) * t);
+            const g = Math.round(0 + 124 * t);
+            const b = Math.round(127 + (30 - 127) * t);
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+            ctx.lineWidth = 0.75;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes with pulse
+      for (const n of nodes) {
+        const pulse = 1 + 0.25 * Math.sin(tick * 0.04 + n.phase);
+        const t = n.x / W;
+        const r = Math.round(240 + (247 - 240) * t);
+        const g = Math.round(0 + 124 * t);
+        const b = Math.round(127 + (30 - 127) * t);
+
+        // Glow
+        const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 3.5 * pulse);
+        grd.addColorStop(0, `rgba(${r},${g},${b},0.55)`);
+        grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 3.5 * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},0.85)`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  }
+</script>

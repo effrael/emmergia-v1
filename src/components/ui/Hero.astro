@@ -1,0 +1,135 @@
+---
+const navLinks = [
+  { label: "Contabilidad", href: "/contabilidad" },
+  { label: "Legal", href: "/legal" },
+  { label: "Automatización", href: "/automatizacion" },
+  { label: "Únete", href: "#" },
+];
+
+const recursos = [
+  {
+    label: "Blog",
+    description: "Guías SUNAT, tributario, gestión",
+    href: "#",
+    icon: `<rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="13" y2="16"></line>`,
+  },
+  {
+    label: "Calculadora tributaria",
+    description: "Simula IGV, renta y planilla",
+    href: "#",
+    icon: `<rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10" x2="10" y2="10"></line><line x1="14" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="10" y2="14"></line><line x1="14" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="10" y2="18"></line><line x1="14" y1="18" x2="16" y2="18"></line>`,
+  },
+];
+---
+
+<header
+  class="sticky top-0 z-50 backdrop-blur-md border-b border-white/[0.06]"
+  style="background: var(--gradient-header)"
+>
+  <div class="max-w-[1280px] mx-auto px-8 h-16 flex items-center">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 no-underline shrink-0">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <polygon points="0,0 22,11 0,22" fill="url(#logo-grad)"></polygon>
+        <defs>
+          <linearGradient id="logo-grad" x1="0" y1="0" x2="22" y2="22">
+            <stop offset="0%" stop-color="var(--pink)"></stop>
+            <stop offset="100%" stop-color="var(--orange)"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="text-base font-bold tracking-[0.08em] text-white"
+        >EMMERGIA</span
+      >
+    </a>
+
+    <!-- Nav (centro) -->
+    <nav class="flex-1 flex justify-center items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-white/75 text-sm font-medium hover:text-white transition-colors no-underline hover:bg-[rgba(255,255,255,.05)] px-4 py-1 rounded-lg"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+
+      <!-- Recursos con dropdown -->
+      <div class="relative group">
+        <button
+          class="flex items-center gap-1 text-white/75 text-sm font-medium hover:text-white transition-colors cursor-pointer bg-transparent border-none hover:bg-[rgba(255,255,255,.05)] px-3 py-2 rounded-lg"
+        >
+          Recursos
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            class="transition-transform duration-200 group-hover:rotate-180"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          >
+            <path d="M2 4l4 4 4-4"></path>
+          </svg>
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[260px] rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 shadow-[0_16px_48px_rgba(0,0,0,0.5)] p-2 gap-4"
+          style="background:#16161F; border: 1px solid rgba(255,255,255,.08))"
+        >
+          {
+            recursos.map((item, i) => (
+              <>
+                <a
+                  href={item.href}
+                  class="flex items-start gap-3 px-4 py-3.5 hover:bg-white/[0.06] transition-colors no-underline rounded-lg"
+                >
+                  <div
+                    class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+                    style="background: linear-gradient(135deg, rgba(240,0,127,.2), rgba(247,124,30,.2))"
+                  >
+                    <svg
+                      style="background: ;"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.6)"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      set:html={item.icon}
+                    />
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-white">
+                      {item.label}
+                    </div>
+                    <div class="text-[0.73rem] text-white/50 mt-0.5 leading-snug">
+                      {item.description}
+                    </div>
+                  </div>
+                </a>
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </nav>
+
+    <!-- Botón -->
+    <div class="shrink-0">
+      <a
+        href="#"
+        class="flex items-center gap-1.5 px-6 py-2 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+        style="background: linear-gradient(90deg, var(--pink), var(--orange))"
+      >
+        Empezar
+      </a>
+    </div>
+  </div>
+</header>

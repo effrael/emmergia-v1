@@ -1,0 +1,110 @@
+---
+const services = [
+  {
+    num: "01",
+    title: "Estructura societaria",
+    desc: "Constitución, reorganización, fusiones. Bien hecho desde el inicio.",
+  },
+  {
+    num: "02",
+    title: "Derecho laboral",
+    desc: "Contratos, despidos, políticas internas. Sin sorpresas ante Sunafil.",
+  },
+  {
+    num: "03",
+    title: "Contratos comerciales",
+    desc: "Revisión y redacción. Cláusulas que te protegen, no que te exponen.",
+  },
+  {
+    num: "04",
+    title: "Propiedad intelectual",
+    desc: "Registro de marca ante Indecopi. Protege lo que construiste.",
+  },
+  {
+    num: "05",
+    title: "Defensa del consumidor",
+    desc: "Libro de reclamaciones, términos, políticas de devolución.",
+  },
+  {
+    num: "06",
+    title: "Debida diligencia",
+    desc: "Antes de firmar, sabemos qué estás firmando.",
+  },
+];
+---
+
+<!-- Hero -->
+<section class="max-w-[1280px] mx-auto px-8 pt-10 pb-20">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-[0.8rem] text-[#999] mb-6">
+    <a href="/" class="hover:text-pink transition-colors no-underline text-[#999]">Inicio</a>
+    <span>›</span>
+    <span class="text-[#555]">Legal</span>
+  </nav>
+
+  <!-- Eyebrow -->
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-8 h-[2px] bg-pink"></span>
+    <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">Legal</span>
+  </div>
+
+  <!-- Headline -->
+  <h1 class="font-obli text-[clamp(2.4rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-[var(--black)] m-0 mb-5">
+    Blindaje legal:<br />
+    <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
+      cimientos para crecer.
+    </em>
+  </h1>
+
+  <!-- Body -->
+  <p class="text-[0.95rem] text-[#555] leading-relaxed max-w-[520px] mb-7">
+    Un contrato mal redactado puede destruir años de esfuerzo en un día. Desde la
+    estructura societaria hasta la protección de tu marca y relaciones laborales,
+    construimos un escudo invisible alrededor de tu patrimonio.
+  </p>
+
+  <!-- Tagline pill -->
+  <div
+    class="inline-flex w-fit px-4 py-2 rounded-full text-[0.8rem] font-medium mb-6"
+    style="border: 1.5px solid var(--orange); color: var(--orange)"
+  >
+    Seguridad jurídica en cada firma, en cada contrato, en cada paso.
+  </div>
+
+  <!-- CTA -->
+  <div>
+    <a
+      href="https://wa.me/51999999999"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+      style="background: var(--gradient-btn)"
+    >
+      Proteger mi patrimonio →
+    </a>
+  </div>
+
+</section>
+
+<!-- Services grid -->
+<section class="bg-[#f5f5f7] py-20">
+  <div class="max-w-[1280px] mx-auto px-8">
+    <div class="grid grid-cols-3 gap-5">
+      {services.map((s) => (
+        <div class="bg-white rounded-2xl p-7 flex flex-col gap-4 shadow-[0_2px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow border border-[#eee]">
+          <span
+            class="w-9 h-9 rounded-xl flex items-center justify-center text-[0.72rem] font-bold text-white"
+            style="background: var(--gradient-btn)"
+          >
+            {s.num}
+          </span>
+          <div>
+            <div class="text-[0.95rem] font-bold text-[var(--black)] mb-1.5">{s.title}</div>
+            <p class="text-[0.83rem] text-[#666] leading-relaxed m-0">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

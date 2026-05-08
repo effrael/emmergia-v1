@@ -1,23 +1,70 @@
+---
+import "@fontsource-variable/manrope/wght.css";
+// Supports weights 100-900
+import "@fontsource-variable/fraunces/wght.css";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @import "tailwindcss";
+
+  @theme {
+    --font-obli: "Fraunces Variable", serif;
+    --color-pink: #f0007f;
+    --color-orange: #f77c1e;
+    --color-brand-black: #0a0a0f;
+  }
+
+  :root {
+    --pink: #f0007f;
+    --orange: #f77c1e;
+    --black: #0a0a0f;
+    --white: #ffffff;
+    --gradient-btn: linear-gradient(90deg, var(--pink), var(--orange));
+    --gradient-header: linear-gradient(
+      180deg,
+      rgba(10, 10, 15, 0.85),
+      rgba(10, 10, 15, 0.6)
+    );
+    --gradient-bg:
+      radial-gradient(
+        1200px 600px at 85% 10%,
+        rgba(240, 0, 127, 0.22),
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 500px at 15% 30%,
+        rgba(247, 124, 30, 0.18),
+        transparent 60%
+      ),
+      linear-gradient(
+        180deg,
+        #0a0a0f 0%,
+        #0a0a0f 55%,
+        #1a1426 70%,
+        #f6eef0 92%,
+        #ffffff 100%
+      );
+  }
+
+  body {
+    font-family: "Manrope Variable", sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #111;
+  }
 </style>
