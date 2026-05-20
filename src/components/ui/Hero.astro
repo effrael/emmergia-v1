@@ -1,9 +1,10 @@
 ---
 const navLinks = [
-  { label: "Contabilidad", href: "/contabilidad" },
-  { label: "Legal", href: "/legal" },
-  { label: "Automatización", href: "/automatizacion" },
-  { label: "Únete", href: "#" },
+  { label: "Contabilidad", href: "/contabilidad", hasArrow: true },
+  { label: "Legal", href: "/legal", hasArrow: false },
+  { label: "Automatización", href: "/automatizacion", hasArrow: true },
+  { label: "Recursos", href: "#", hasArrow: true },
+  { label: "Únete", href: "/unetee", hasArrow: false },
 ];
 
 const recursos = [
@@ -22,11 +23,16 @@ const recursos = [
 ];
 ---
 
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
 <header
-  class="sticky top-0 z-50 backdrop-blur-md border-b border-white/[0.06]"
-  style="background: var(--gradient-header)"
+  id="site-header"
+  class="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.06]"
+  style="background:#000"
 >
-  <div class="max-w-[1280px] mx-auto px-8 h-16 flex items-center">
+  <div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 no-underline shrink-0">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -38,98 +44,149 @@ const recursos = [
           </linearGradient>
         </defs>
       </svg>
-      <span class="text-base font-bold tracking-[0.08em] text-white"
-        >EMMERGIA</span
-      >
+      <span class="text-base font-bold tracking-[0.08em] text-white">EMMERGIA</span>
     </a>
 
-    <!-- Nav (centro) -->
-    <nav class="flex-1 flex justify-center items-center gap-8">
+    <!-- Desktop nav (oculto en móvil) -->
+    <nav class="hidden md:flex flex-1 justify-center items-center gap-6">
       {
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-white/75 text-sm font-medium hover:text-white transition-colors no-underline hover:bg-[rgba(255,255,255,.05)] px-4 py-1 rounded-lg"
+            class="text-white/75 text-sm font-medium hover:text-white transition-colors no-underline hover:bg-white/[0.05] px-4 py-1.5 rounded-lg"
           >
             {link.label}
           </a>
         ))
       }
-
-      <!-- Recursos con dropdown -->
-      <div class="relative group">
-        <button
-          class="flex items-center gap-1 text-white/75 text-sm font-medium hover:text-white transition-colors cursor-pointer bg-transparent border-none hover:bg-[rgba(255,255,255,.05)] px-3 py-2 rounded-lg"
-        >
-          Recursos
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            class="transition-transform duration-200 group-hover:rotate-180"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          >
-            <path d="M2 4l4 4 4-4"></path>
-          </svg>
-        </button>
-
-        <!-- Dropdown -->
-        <div
-          class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[260px] rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 shadow-[0_16px_48px_rgba(0,0,0,0.5)] p-2 gap-4"
-          style="background:#16161F; border: 1px solid rgba(255,255,255,.08))"
-        >
-          {
-            recursos.map((item, i) => (
-              <>
-                <a
-                  href={item.href}
-                  class="flex items-start gap-3 px-4 py-3.5 hover:bg-white/[0.06] transition-colors no-underline rounded-lg"
-                >
-                  <div
-                    class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
-                    style="background: linear-gradient(135deg, rgba(240,0,127,.2), rgba(247,124,30,.2))"
-                  >
-                    <svg
-                      style="background: ;"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="rgba(255,255,255,0.6)"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      set:html={item.icon}
-                    />
-                  </div>
-                  <div>
-                    <div class="text-sm font-semibold text-white">
-                      {item.label}
-                    </div>
-                    <div class="text-[0.73rem] text-white/50 mt-0.5 leading-snug">
-                      {item.description}
-                    </div>
-                  </div>
-                </a>
-              </>
-            ))
-          }
-        </div>
-      </div>
     </nav>
 
-    <!-- Botón -->
-    <div class="shrink-0">
+    <!-- Derecha: botón Empezar (desktop) + hamburger (siempre visible en móvil) -->
+    <div class="flex items-center gap-4 shrink-0">
       <a
         href="#"
-        class="flex items-center gap-1.5 px-6 py-2 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+        class="hidden md:flex items-center gap-1.5 px-6 py-2 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+        style="background: linear-gradient(90deg, var(--pink), var(--orange))"
+      >
+        Empezar
+      </a>
+
+      <!-- Hamburger button -->
+      <button
+        id="menu-open"
+        aria-label="Abrir menú"
+        class="flex flex-col justify-center items-center w-10 h-10 gap-[6px] md:hidden"
+      >
+        <span class="block w-6 h-[2px] bg-white rounded-full self-end"></span>
+        <span class="block w-6 h-[2px] bg-white rounded-full self-end"></span>
+        <span class="block w-4 h-[2px] bg-white rounded-full self-end"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE OVERLAY MENU
+     ============================================================ -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[100] flex flex-col"
+  style="background:#000; transform: translateY(-100%); transition: transform 0.35s cubic-bezier(.4,0,.2,1);"
+  aria-hidden="true"
+>
+  <!-- Top bar dentro del overlay -->
+  <div class="flex items-center justify-between px-6 h-16 border-b border-white/[0.08] shrink-0">
+    <a href="/" class="flex items-center gap-2 no-underline">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <polygon points="0,0 22,11 0,22" fill="url(#logo-grad-m)"></polygon>
+        <defs>
+          <linearGradient id="logo-grad-m" x1="0" y1="0" x2="22" y2="22">
+            <stop offset="0%" stop-color="var(--pink)"></stop>
+            <stop offset="100%" stop-color="var(--orange)"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="text-base font-bold tracking-[0.08em] text-white">EMMERGIA</span>
+    </a>
+
+    <!-- Botón X (cerrar) -->
+    <button id="menu-close" aria-label="Cerrar menú" class="w-10 h-10 flex items-center justify-center text-white">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="3" x2="19" y2="19"></line>
+        <line x1="19" y1="3" x2="3" y2="19"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Items del menú -->
+  <nav class="flex-1 overflow-y-auto">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="flex items-center justify-between px-6 py-6 border-b border-white/[0.08] no-underline group"
+        >
+          <span class="text-white text-[1.6rem] font-light tracking-tight group-hover:opacity-70 transition-opacity">
+            {link.label}
+          </span>
+          {link.hasArrow && (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="opacity-60 group-hover:opacity-100 transition-opacity"
+            >
+              <path d="M7 4l6 6-6 6"></path>
+            </svg>
+          )}
+        </a>
+      ))
+    }
+
+    <!-- CTA en el overlay -->
+    <div class="px-6 pt-8 pb-4">
+      <a
+        href="#"
+        class="flex items-center justify-center w-full py-3.5 rounded-full text-white text-base font-semibold no-underline"
         style="background: linear-gradient(90deg, var(--pink), var(--orange))"
       >
         Empezar
       </a>
     </div>
-  </div>
-</header>
+  </nav>
+</div>
+
+<!-- ============================================================
+     SCRIPT
+     ============================================================ -->
+<script>
+  const openBtn = document.getElementById("menu-open");
+  const closeBtn = document.getElementById("menu-close");
+  const menu = document.getElementById("mobile-menu");
+
+  function openMenu() {
+    menu!.style.transform = "translateY(0)";
+    menu!.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    menu!.style.transform = "translateY(-100%)";
+    menu!.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  openBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+
+  // Cerrar con Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+</script>

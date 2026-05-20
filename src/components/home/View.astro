@@ -7,7 +7,7 @@ import Hero from "../ui/Hero.astro";
 
   <!-- HERO SECTION -->
   <section
-    class="max-w-[1280px] mx-auto px-8 pt-24 pb-16 grid grid-cols-2 items-center gap-16"
+    class="max-w-[1280px] mx-auto px-8 pt-24 pb-16 grid md:grid-cols-2 items-center gap-16"
   >
     <!-- Left -->
     <div class="flex flex-col gap-6">
@@ -25,14 +25,14 @@ import Hero from "../ui/Hero.astro";
 
       <!-- Headline -->
       <h1
-        class="font-obli text-6xl leading-none tracking-[-0.025em] font-bold text-white mt-[18px] mb-[22px] text-balance"
+        class="font-obli text-5xl md:text-6xl leading-none tracking-[-0.025em] font-bold text-white mt-[18px] mb-[22px] text-balance"
       >
-        Contabilidad que
+        Tu socio diseñado para
         <span class="relative inline-block">
           <span
             id="rotating-word"
             class="italic font-semibold bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
-            >protege.</span
+            >crecer tu negocio.</span
           >
           <svg
             viewBox="0 0 200 14"
@@ -60,25 +60,20 @@ import Hero from "../ui/Hero.astro";
         class="text-[0.975rem] text-white/80 leading-relaxed max-w-[460px] m-0"
       >
         Integramos la Contabilidad, el blindaje Legal y la Automatización como
-        un solo servicio. Deja de apagar incendios administrativos y recupera el
-        tiempo para hacer lo que mejor sabes hacer: crecer.
+        un solo servicio. Simplificamos la complejidad regulatoria, repensamos
+        las barreras legales y automatizamos tus equipos contables para que tú
+        lideres tu industria y tengas ventajas competitivas reales.
       </p>
 
       <!-- CTAs -->
       <div class="flex items-center gap-4 flex-wrap">
         <a
           href="#"
-          class="px-6 py-3 text-[0.95rem] font-semibold rounded-full text-white no-underline hover:opacity-90 transition-opacity"
+          class="px-6 py-3 text-[0.95rem] font-black uppercase  rounded-full text-white no-underline hover:opacity-90 transition-opacity"
           style="background: var(--gradient-btn)"
         >
           Agenda una reunión →
-        </a>
-        <a
-          href="#"
-          class="px-6 py-3 text-[0.95rem] font-semibold rounded-full text-white border border-white/25 bg-white/5 hover:bg-white/10 transition-colors no-underline"
-        >
-          Ver servicios
-        </a>
+        </a>  
       </div>
     </div>
 
@@ -273,7 +268,11 @@ import Hero from "../ui/Hero.astro";
 
 <script>
   // ── Rotating word ──
-  const words = ["protege.", "aumenta.", "mejora."];
+  const words = [
+    "crecer tu patrimonio.",
+    "aumentar tus ventas",
+    "recudir tus procesos",
+  ];
   let index = 0;
   const el = document.getElementById("rotating-word") as HTMLElement;
 

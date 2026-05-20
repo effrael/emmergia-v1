@@ -1,0 +1,299 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/ui/Hero.astro";
+import Footer from "../components/ui/Footer.astro";
+
+const pilares = [
+  {
+    numero: "01",
+    emoji: "🔒",
+    titulo: "Confianza como moneda",
+    cita: "\"La confianza no se pide. Se construye entrega tras entrega.\"",
+    descripcion:
+      "Cumplimos deadlines como si fueran promesas. Porque lo son. Cada informe entregado a tiempo, cada llamada respondida al instante, cada error asumido sin excusas — así se construye una reputación que el dinero no puede comprar.",
+  },
+  {
+    numero: "02",
+    emoji: "⚡",
+    titulo: "Velocidad de ejecución",
+    cita: "\"Perfecto y tarde es inútil. Excelente y rápido es imparable.\"",
+    descripcion:
+      "Nuestros clientes operan en mercados que no esperan. Nosotros tampoco. Tomamos decisiones rápido, iteramos más rápido y entregamos antes de lo prometido. La velocidad no es el enemigo de la calidad — es su mejor aliado cuando tienes estándares altos.",
+  },
+  {
+    numero: "03",
+    emoji: "🎯",
+    titulo: "Obsesión por el resultado",
+    cita: "\"No gestionamos tareas. Generamos impacto medible.\"",
+    descripcion:
+      "Cada acción que tomamos tiene un propósito concreto: hacer que tu negocio sea más rentable, más ordenado y más sólido. No nos conformamos con entregar el trabajo — nos importa que ese trabajo mueva la aguja de verdad.",
+  },
+  {
+    numero: "04",
+    emoji: "🔍",
+    titulo: "Precisión sin concesiones",
+    cita: "\"Un número mal puesto puede costarle millones a un cliente. Lo sabemos.\"",
+    descripcion:
+      "En contabilidad y legal, el detalle lo es todo. Cultivamos una cultura donde la exactitud no es negociable. Revisamos dos veces, documentamos todo y tratamos cada caso como si fuera el único que importa — porque para ese cliente, lo es.",
+  },
+  {
+    numero: "05",
+    emoji: "🚀",
+    titulo: "Mentalidad de mejora continua",
+    cita: "\"Lo que hoy nos hace buenos, mañana será nuestro mínimo aceptable.\"",
+    descripcion:
+      "Vivimos en un entorno que cambia: nuevas normas SUNAT, nuevas tecnologías, nuevos modelos de negocio. No esperamos a que el cambio nos alcance — lo anticipamos, lo absorbemos y lo convertimos en ventaja para nuestros clientes y para nosotros.",
+  },
+];
+---
+
+<Layout>
+  <!-- ═══════════════════════════════════════════════
+       HERO — DARK SECTION
+  ════════════════════════════════════════════════ -->
+  <div
+    style="background: var(--gradient-bg); color: var(--white)"
+    class="pb-2"
+  >
+    <Hero />
+
+    <section class="max-w-[1280px] mx-auto px-8 pt-24 pb-20">
+      <!-- Badge -->
+      <div
+        class="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-1.5 text-[0.78rem] text-white/80 w-fit mb-8"
+      >
+        <span class="w-[7px] h-[7px] rounded-full bg-pink shrink-0"></span>
+        <span class="font-obli font-bold italic text-white">ÚNETE AL EQUIPO</span>
+      </div>
+
+      <!-- Headline principal -->
+      <h1
+        class="font-obli text-5xl md:text-[3.8rem] leading-[1.05] font-bold text-white max-w-[720px] mb-6 tracking-[-0.02em]"
+      >
+        Menos horas hombre en tareas repetitivas,
+        <em
+          class="not-italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
+        >
+          más rentabilidad por empleado.
+        </em>
+      </h1>
+
+      <p class="text-[1rem] text-white/60 leading-relaxed max-w-[560px] m-0">
+        En EMMERGIA no buscamos ejecutores de instrucciones. Buscamos personas
+        que piensen, que propongan y que se incomoden cuando algo puede hacerse
+        mejor. Si eso te suena, sigue leyendo.
+      </p>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       5 PILARES CULTURALES
+  ════════════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="max-w-[1280px] mx-auto px-8 pt-24 pb-20">
+
+      <!-- Eyebrow — mismo estilo que Contabilidad / Automatización -->
+      <div class="flex items-center gap-3 justify-center py-16 px-8">
+        <span class="w-8 h-[2px] bg-pink"></span>
+        <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">
+          Nuestros 5 pilares culturales
+        </span>
+        <span class="w-8 h-[2px] bg-pink"></span>
+      </div>
+
+
+      <!-- Bento grid: 3 arriba / 2 abajo -->
+      <div class="bento-wrapper mx-10">
+        <div class="bento-grid">
+        {
+          pilares.map((p) => (
+            <div class="flex flex-col gap-4 p-8 bg-white">
+              <!-- Emoji + número -->
+              <div class="flex flex-col items-center text-center gap-2 mb-1">
+                <span class="text-4xl">{p.emoji}</span>
+                <span class="text-[0.65rem] font-bold tracking-[0.18em] text-[#bbb] uppercase">
+                  Pilar {p.numero}
+                </span>
+              </div>
+
+              <!-- Título -->
+              <h3 class="font-obli text-[1.4rem] font-bold text-[var(--black)] text-center m-0">
+                {p.titulo}
+              </h3>
+
+              <!-- Cita -->
+              <p class="text-[0.875rem] text-[#666] italic text-center leading-snug m-0">
+                {p.cita}
+              </p>
+
+              <!-- Divisor gradiente -->
+              <div
+                class="w-10 h-[2px] mx-auto rounded-full"
+                style="background: var(--gradient-btn)"
+              />
+
+              <!-- Descripción -->
+              <p class="text-[0.875rem] text-[#555] leading-relaxed text-center m-0">
+                {p.descripcion}
+              </p>
+            </div>
+          ))
+        }
+        </div><!-- /bento-grid -->
+      </div><!-- /bento-wrapper -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       OPEN APPLICATION
+  ════════════════════════════════════════════════ -->
+  <section class="max-w-[1280px] mx-auto px-8 pt-24 pb-20">
+    <div
+      class="relative rounded-2xl overflow-hidden px-10 py-16 flex flex-col md:flex-row gap-12 items-start"
+      style="background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(240,0,127,0.35), transparent 70%), radial-gradient(ellipse 50% 60% at 80% 100%, rgba(180,40,0,0.5), transparent 65%), #100a0f"
+    >
+      <!-- Left: copy -->
+      <div class="flex-1 flex flex-col gap-5">
+        <div
+          class="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.1] rounded-full px-4 py-1.5 text-[0.75rem] text-white/70 w-fit"
+        >
+          <span
+            class="w-2 h-2 rounded-full animate-pulse"
+            style="background: var(--pink)"></span>
+          Siempre buscamos gente extraordinaria
+        </div>
+
+        <h2
+          class="font-obli text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-white leading-tight m-0"
+        >
+          Cuéntanos quién eres.
+          <em
+            class="not-italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
+          >
+            Sin formatos.
+          </em>
+        </h2>
+
+        <p class="text-[0.9rem] text-white/55 leading-relaxed m-0 max-w-[400px]">
+          Cuéntanos quién eres, qué sabes hacer y por qué EMMERGIA te parece
+          interesante. Sin formato, sin formalidades. Un email honesto y tu CV
+          es lo que necesitamos.
+        </p>
+      </div>
+
+      <!-- Right: CTA -->
+      <div class="flex flex-col items-start gap-4 shrink-0">
+        <!-- Email destacado -->
+        <a
+          href="mailto:Talento@emmergia.biz"
+          class="flex items-center gap-3 group no-underline"
+        >
+          <div
+            class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+            style="background: linear-gradient(135deg, rgba(240,0,127,.25), rgba(247,124,30,.25))"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="rgba(255,255,255,0.7)"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="M2 7l10 7 10-7"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="text-[0.7rem] text-white/35 uppercase tracking-widest mb-0.5">
+              Escríbenos a
+            </div>
+            <div
+              class="text-[1.05rem] font-bold text-white group-hover:text-pink transition-colors"
+              style="color: var(--orange)"
+            >
+              Talento@emmergia.biz
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="mailto:Talento@emmergia.biz"
+          class="mt-2 inline-flex items-center gap-2 px-7 py-3 rounded-full text-white text-sm font-bold hover:opacity-90 transition-opacity no-underline"
+          style="background: var(--gradient-btn)"
+        >
+          Enviar mi presentación →
+        </a>
+
+        <p class="text-[0.75rem] text-white/30 m-0 max-w-[220px] leading-snug">
+          Revisamos cada mensaje. Si encajas, te contactamos en menos de 72 h.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Wrapper con pseudo-elementos fuera del grid ── */
+  .bento-wrapper {
+    position: relative;
+  }
+
+  .bento-wrapper::before,
+  .bento-wrapper::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    bottom: -40px;
+    width: 1px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.12) 25%,
+      rgba(0, 0, 0, 0.12) 75%,
+      transparent 100%
+    );
+  }
+
+  .bento-wrapper::before { left: -24px; }
+  .bento-wrapper::after  { right: -24px; }
+
+  /* ── Bento grid ── */
+  .bento-grid {
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr;
+    background: rgba(0, 0, 0, 0.09);
+    /* sin borde lateral — lo reemplazan los pseudo-elementos */
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    overflow: hidden;
+  }
+
+  .bento-grid > * {
+    outline: 1px solid rgba(0, 0, 0, 0.09);
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .bento-grid > *:nth-child(1),
+    .bento-grid > *:nth-child(2),
+    .bento-grid > *:nth-child(3) {
+      grid-column: span 2;
+    }
+
+    .bento-grid > *:nth-child(4),
+    .bento-grid > *:nth-child(5) {
+      grid-column: span 3;
+    }
+  }
+</style>
