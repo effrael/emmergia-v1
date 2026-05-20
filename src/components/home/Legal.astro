@@ -9,10 +9,10 @@ const DURATION = 22;
 ---
 
 <section
-  class="max-w-[1280px] mx-auto px-8 py-24 grid md:grid-cols-2 items-center gap-20"
+  class="legal-section max-w-[1280px] mx-auto px-8 py-16 grid md:grid-cols-2 items-center gap-20"
 >
   <!-- Left: visual -->
-  <div class="relative h-[480px] overflow-hidden flex items-center justify-center">
+  <div class="legal-visual relative h-[480px] overflow-hidden flex items-center justify-center">
     <!-- Neural network canvas -->
     <canvas
       id="legal-neural"
@@ -47,7 +47,7 @@ const DURATION = 22;
   </div>
 
   <!-- Right: texto -->
-  <div class="flex flex-col gap-6">
+  <div class="legal-text flex flex-col gap-6">
     <!-- Eyebrow -->
     <div class="flex items-center gap-3">
       <span class="w-8 h-[2px] bg-pink"></span>
@@ -101,6 +101,36 @@ const DURATION = 22;
 </section>
 
 <style>
+  .legal-section {
+    overflow: clip;
+  }
+
+  .legal-visual {
+    opacity: 0;
+    transform: translateX(-160px);
+    transition:
+      opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (max-width: 768px) {
+    .legal-visual { transform: translateX(-60px); }
+  }
+
+  .legal-text {
+    opacity: 0;
+    transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .legal-visual.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .legal-text.in-view {
+    opacity: 1;
+  }
+
   .legal-orbit-wrapper {
     position: absolute;
     top: 50%;
@@ -255,4 +285,24 @@ const DURATION = 22;
 
     draw();
   }
+
+  // ── Entrance animation ──
+  const section = document.querySelector(".legal-section") as HTMLElement;
+  const visual  = document.querySelector(".legal-visual") as HTMLElement;
+  const text    = document.querySelector(".legal-text") as HTMLElement;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        visual.classList.add("in-view");
+        text.classList.add("in-view");
+      } else {
+        visual.classList.remove("in-view");
+        text.classList.remove("in-view");
+      }
+    },
+    { threshold: window.innerWidth < 768 ? 0.15 : 0.75 }
+  );
+
+  observer.observe(section);
 </script>

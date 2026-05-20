@@ -1,4 +1,5 @@
 ---
+import Image from "astro/components/Image.astro";
 import Hero from "../ui/Hero.astro";
 ---
 
@@ -7,24 +8,15 @@ import Hero from "../ui/Hero.astro";
 
   <!-- HERO SECTION -->
   <section
-    class="max-w-[1280px] mx-auto px-8 pt-24 pb-16 grid md:grid-cols-2 items-center gap-16"
+    class="max-w-[1280px] mx-auto px-8 py-24 grid md:grid-cols-2 items-center gap-16"
   >
     <!-- Left -->
     <div class="flex flex-col gap-6">
       <!-- Badge -->
-      <div
-        class="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-1.5 text-[0.78rem] text-white/80 w-fit"
-      >
-        <span class="w-[7px] h-[7px] rounded-full bg-pink shrink-0"></span>
-        <span
-          class="bg-clip-text font-obli text-transparent font-bold italic text-white"
-        >
-          EL TIEMPO ES DINERO - AHORRA AMBOS
-        </span>
-      </div>
 
       <!-- Headline -->
       <h1
+        data-animate="fade-in"
         class="font-obli text-5xl md:text-6xl leading-none tracking-[-0.025em] font-bold text-white mt-[18px] mb-[22px] text-balance"
       >
         Tu socio diseñado para
@@ -57,6 +49,7 @@ import Hero from "../ui/Hero.astro";
 
       <!-- Description -->
       <p
+        data-animate="fade-in" data-animate-delay="120"
         class="text-[0.975rem] text-white/80 leading-relaxed max-w-[460px] m-0"
       >
         Integramos la Contabilidad, el blindaje Legal y la Automatización como
@@ -66,163 +59,33 @@ import Hero from "../ui/Hero.astro";
       </p>
 
       <!-- CTAs -->
-      <div class="flex items-center gap-4 flex-wrap">
+      <div data-animate="fade-in" data-animate-delay="220" class="flex items-center gap-4 flex-wrap">
         <a
           href="#"
-          class="px-6 py-3 text-[0.95rem] font-black uppercase  rounded-full text-white no-underline hover:opacity-90 transition-opacity"
+          class="px-6 py-3 text-[0.95rem] font-black uppercase rounded-full text-white no-underline hover:opacity-90 transition-opacity"
           style="background: var(--gradient-btn)"
         >
           Agenda una reunión →
-        </a>  
+        </a>
       </div>
     </div>
 
     <!-- Right: Mock UI -->
-    <div class="relative h-[380px]">
-      <!-- Dashboard card -->
-      <div
-        class="absolute left-0 top-0 w-[76%] bg-white/[0.96] rounded-[14px] shadow-[0_32px_80px_rgba(0,0,0,0.5)] overflow-hidden text-[#111]"
-      >
-        <!-- Chrome bar -->
-        <div class="bg-[#f0f0f0] px-3 py-2 flex items-center gap-3">
-          <div class="flex gap-[5px]">
-            <span class="w-[10px] h-[10px] rounded-full bg-[#ddd]"></span>
-            <span class="w-[10px] h-[10px] rounded-full bg-[#ddd]"></span>
-            <span class="w-[10px] h-[10px] rounded-full bg-[#ddd]"></span>
-          </div>
-          <div
-            class="text-[0.7rem] text-[#888] bg-white rounded-md px-2 py-0.5"
-          >
-            app.emmergia.pe / tablero
-          </div>
-        </div>
-        <!-- Body -->
-        <div class="p-4">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <div class="text-base font-bold text-[#111]">
-                Tablero financiero
-              </div>
-              <div class="text-[0.7rem] text-[#888] mt-0.5">
-                Abril 2026 · actualizado hace 2 min
-              </div>
-            </div>
-            <div class="flex gap-1.5">
-              <button
-                class="text-[0.7rem] px-2 py-0.5 rounded-md bg-[#111] text-white border-none cursor-pointer"
-                >Resumen</button
-              >
-              <button
-                class="text-[0.7rem] px-2 py-0.5 rounded-md bg-[#eee] text-[#555] border-none cursor-pointer"
-                >SUN...</button
-              >
-            </div>
-          </div>
-          <!-- Stats -->
-          <div class="flex gap-2 mb-3">
-            <div class="flex-1 bg-[#f7f7f9] rounded-lg p-2.5">
-              <div
-                class="text-[0.6rem] text-[#999] font-semibold tracking-wide"
-              >
-                INGRESOS MES
-              </div>
-              <div class="text-base font-bold text-[#111] mt-0.5">
-                S/ 248,310
-              </div>
-              <div class="text-[0.65rem] text-green-600 font-medium mt-0.5">
-                ▲ 12.4% vs marzo
-              </div>
-            </div>
-            <div class="flex-1 bg-[#f7f7f9] rounded-lg p-2.5">
-              <div
-                class="text-[0.6rem] text-[#999] font-semibold tracking-wide"
-              >
-                IGV POR PAGAR
-              </div>
-              <div class="text-base font-bold text-[#111] mt-0.5">
-                S/ 18,240
-              </div>
-              <div class="text-[0.65rem] text-amber-600 font-medium mt-0.5">
-                Vence 18/05
-              </div>
-            </div>
-            <div class="flex-[0.6] bg-[#f7f7f9] rounded-lg p-2.5">
-              <div
-                class="text-[0.6rem] text-[#999] font-semibold tracking-wide leading-snug"
-              >
-                AHORRO<br />FISCAL<br />YTD
-              </div>
-            </div>
-          </div>
-          <!-- Chart -->
-          <div class="text-[0.68rem] text-[#aaa] mb-1">
-            Utilidad vs proyección
-          </div>
-          <svg
-            viewBox="0 0 300 80"
-            preserveAspectRatio="none"
-            width="100%"
-            height="80"
-          >
-            <defs>
-              <linearGradient id="chart-grad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="var(--pink)"></stop>
-                <stop offset="100%" stop-color="var(--orange)"></stop>
-              </linearGradient>
-            </defs>
-            <polyline
-              points="0,70 50,60 100,50 150,40 200,25 250,15 300,8"
-              fill="none"
-              stroke="url(#chart-grad)"
-              stroke-width="2.5"
-              stroke-linecap="round"></polyline>
-            <polyline
-              points="0,70 50,65 100,60 150,55 200,48 250,42 300,35"
-              fill="none"
-              stroke="#F77C1E"
-              stroke-width="2"
-              stroke-dasharray="6,4"
-              stroke-linecap="round"
-              opacity="0.5"></polyline>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Mobile card -->
-      <div
-        class="absolute right-0 bottom-0 w-[44%] rounded-[18px] overflow-hidden text-white shadow-[0_24px_60px_rgba(240,0,127,0.4)]"
-        style="background: linear-gradient(160deg, var(--pink), var(--orange))"
-      >
-        <div class="px-4 pt-4 pb-3">
-          <div class="text-[0.7rem] opacity-80 mb-0.5">Flujo de caja hoy</div>
-          <div class="text-[1.5rem] font-extrabold tracking-tight">
-            S/ 38,420
-          </div>
-          <div class="text-[0.62rem] opacity-75 mt-0.5">
-            3 conciliaciones automáticas
-          </div>
-        </div>
-        <div
-          class="mx-2.5 mb-2.5 bg-white rounded-[10px] px-3 py-2 flex flex-col gap-1.5"
-        >
-          <div class="flex justify-between items-center">
-            <span class="text-[0.65rem] text-[#666]">Hoy 16:02</span>
-            <span class="text-[0.7rem] font-bold text-green-600">+4,820</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-[0.65rem] text-[#666]">Hoy 11:45</span>
-            <span class="text-[0.7rem] font-bold text-red-600">-880</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-[0.65rem] text-[#666]">Cliente: ALFA SAC</span>
-            <span class="text-[0.7rem] font-bold text-green-600">+12,640</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-[0.65rem] text-[#666]">Programado 30/04</span>
-            <span class="text-[0.7rem] font-bold text-red-600">-18,200</span>
-          </div>
-        </div>
-      </div>
+    <div class="relative hero-images">
+      <Image
+        alt={"Dashboard"}
+        width={1920}
+        height={1080}
+        src={"/dashboard.svg"}
+        class={"shadow-xl hero-img-main"}
+      />
+      <Image
+        alt={"Dashboard"}
+        width={702}
+        height={408}
+        src={"/BG.svg"}
+        class={"w-1/2 rounded-xl absolute bottom-20 md:bottom-34 -right-5 md:-right-10 shadow-xl hero-img-secondary"}
+      />
     </div>
   </section>
 
@@ -250,6 +113,27 @@ import Hero from "../ui/Hero.astro";
 </div><!-- end gradient wrapper -->
 
 <style>
+  /* Hero images — scale desde top-right */
+  .hero-img-main {
+    opacity: 0;
+    transform: scale(0.88);
+    transform-origin: top right;
+    transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-img-secondary {
+    opacity: 0;
+    transform: scale(0.88);
+    transform-origin: top right;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+  }
+  .hero-images.is-visible .hero-img-main,
+  .hero-images.is-visible .hero-img-secondary {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   #rotating-word {
     display: inline-block;
     transition:
@@ -267,6 +151,21 @@ import Hero from "../ui/Hero.astro";
 </style>
 
 <script>
+  // ── Hero images entrance ──
+  const heroImages = document.querySelector(".hero-images") as HTMLElement;
+  if (heroImages) {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          heroImages.classList.add("is-visible");
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(heroImages);
+  }
+
   // ── Rotating word ──
   const words = [
     "crecer tu patrimonio.",

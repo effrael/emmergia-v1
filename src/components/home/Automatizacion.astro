@@ -76,10 +76,10 @@ const grid = [
 ---
 
 <section
-  class="max-w-[1280px] mx-auto px-8 py-24 grid md:grid-cols-2 items-center gap-20"
+  class="auto-section max-w-[1280px] mx-auto px-8 py-16 grid md:grid-cols-2 items-center gap-10 md:gap-20"
 >
   <!-- Left -->
-  <div class="flex flex-col gap-6">
+  <div class="auto-text flex flex-col gap-6">
     <!-- Eyebrow -->
     <div class="flex items-center gap-3">
       <span class="w-8 h-[2px] bg-pink"></span>
@@ -94,7 +94,7 @@ const grid = [
       class="font-obli text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.05] text-[var(--black)] m-0"
     >
       Moderniza tu <br />
-      "Back Office": 
+      "Back Office":
       <em
         class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
         >de la digitación manual a la Inteligencia Artificial.</em
@@ -103,9 +103,13 @@ const grid = [
 
     <!-- Body -->
     <p class="text-[0.95rem] text-[#444] leading-relaxed max-w-[480px] m-0">
-     ¿Tu equipo contable sigue perdiendo horas picando datos, conciliando bancos en Excel y corrigiendo errores de tipeo?
+      ¿Tu equipo contable sigue perdiendo horas picando datos, conciliando
+      bancos en Excel y corrigiendo errores de tipeo?
       <strong class="text-[var(--black)]">Eso es cosa del pasado.</strong>
-      Implementamos ecosistemas de automatización que conectan tus ventas, compras y bancos en tiempo real. Reducimos la carga operativa manual en un 70%, transformando a tu equipo contable: de digitadores estresados a analistas financieros que aportan valor real a tu estrategia.
+      Implementamos ecosistemas de automatización que conectan tus ventas, compras
+      y bancos en tiempo real. Reducimos la carga operativa manual en un 70%, transformando
+      a tu equipo contable: de digitadores estresados a analistas financieros que
+      aportan valor real a tu estrategia.
     </p>
     <div
       class="inline-flex w-fit px-4 py-2.5 italic rounded-full text-[0.8rem] font-bold"
@@ -145,37 +149,65 @@ const grid = [
   </div>
 
   <!-- Right: flow grid -->
-  <div
-    class="rounded-2xl p-4 grid grid-cols-3 gap-2 overflow-hidden"
-    style="background: #1a1a24"
+  <div class="auto-img"><div
+    class="-mx-3.5 h-full cursor-default select-none overflow-clip [mask-image:radial-gradient(180%_95%_at_-10%_0%,black_80%,transparent_100%)]"
   >
-    {
-      grid.map((cell) => (
-        <div
-          class={`rounded-xl p-4 flex flex-col gap-1.5 ${cell.highlight ? "" : ""}`}
-          style={
-            cell.highlight
-              ? "background: var(--gradient-btn)"
-              : "background: rgba(255,255,255,0.05)"
-          }
-        >
-          <span
-            class={`text-[0.6rem] font-bold tracking-[0.12em] uppercase ${cell.highlight ? "text-white/70" : "text-white/35"}`}
-          >
-            {cell.type}
-          </span>
-          <span
-            class={`text-[0.875rem] font-bold leading-snug whitespace-pre-line ${cell.highlight ? "text-white" : "text-white/90"}`}
-          >
-            {cell.title}
-          </span>
-          <span
-            class={`text-[0.7rem] leading-snug ${cell.highlight ? "text-white/80" : "text-white/40"}`}
-          >
-            {cell.sub}
-          </span>
-        </div>
-      ))
-    }
-  </div>
+    <img
+      src="/frame-3.svg"
+      data-image-component="true"
+      alt="Panel de contabilidad"
+      loading="lazy"
+      decoding="async"
+      width="600"
+      height="600"
+      class="mx-3.5 origin-top rounded-xl border border-neutral-200 bg-white shadow-[0_20px_20px_0_#00000017] md:origin-top-left"
+    />
+  </div></div>
 </section>
+
+<style>
+  .auto-section {
+    overflow: clip;
+  }
+
+  .auto-text {
+    opacity: 0;
+    transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .auto-img {
+    opacity: 0;
+    transform: translateX(160px);
+    transition:
+      opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (max-width: 768px) {
+    .auto-img { transform: translateX(60px); }
+  }
+
+  .auto-text.in-view { opacity: 1; }
+  .auto-img.in-view  { opacity: 1; transform: translateX(0); }
+</style>
+
+<script>
+  const section = document.querySelector(".auto-section") as HTMLElement;
+  const text    = document.querySelector(".auto-text") as HTMLElement;
+  const img     = document.querySelector(".auto-img") as HTMLElement;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        text.classList.add("in-view");
+        img.classList.add("in-view");
+      } else {
+        text.classList.remove("in-view");
+        img.classList.remove("in-view");
+      }
+    },
+    { threshold: window.innerWidth < 768 ? 0.15 : 0.75 }
+  );
+
+  observer.observe(section);
+</script>

@@ -1,4 +1,6 @@
 ---
+import Image from "astro/components/Image.astro";
+
 const rows = [
   { label: "Ventas gravadas", value: "S/ 248,310.00", highlight: false },
   { label: "IGV ventas", value: "S/ 44,695.80", highlight: false },
@@ -9,27 +11,20 @@ const rows = [
 ---
 
 <section
-  class="max-w-[1280px] mx-auto px-8 py-24 grid md:grid-cols-2 items-center gap-20 bg-white"
+  class="contabilidad-section max-w-[1280px] mx-auto px-8 py-16 grid md:grid-cols-2 items-center gap-20"
 >
   <!-- Left -->
-  <div class="flex flex-col gap-6">
+  <div class="contabilidad-text flex flex-col gap-6">
     <!-- Eyebrow -->
     <div class="flex items-center gap-3">
       <span class="w-8 h-[2px] bg-pink"></span>
-      <span
-        class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase"
-        >Contabilidad</span
-      >
+      <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">Contabilidad</span>
     </div>
 
     <!-- Headline -->
-    <h2
-      class="font-obli text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.05] text-[var(--black)] m-0"
-    >
+    <h2 class="font-obli text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.05] text-[var(--black)] m-0">
       Si estás ocupado,<br />
-      <em
-        class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
-      >
+      <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
         ¿quién dirige<br />tu empresa?
       </em>
     </h2>
@@ -37,9 +32,8 @@ const rows = [
     <!-- Body -->
     <p class="text-[0.95rem] text-[#444] leading-relaxed max-w-[500px] m-0">
       No encargamos de tu contabilidad, pero eso es solo el comienzo. Contabilidad a prueba de auditorías.
-      <strong class="text-[var(--black)]"
-        >"Sabemos que el sistema tributario peruano parece un laberinto diseñado para que te equivoques. Nosotros somos tu mapa y tu brújula."</strong
-      > No somos los contadores que solo aparecen para pedirte facturas a fin de mes. Somos tus aliados financieros. Gestionamos tus impuestos con precisión quirúrgica para garantizar cumplimiento total ante la SUNAT y, lo más importante, optimizamos tu carga fiscal legalmente para que tu flujo de caja respire. Paga lo justo”.
+      <strong class="text-[var(--black)]">"Sabemos que el sistema tributario peruano parece un laberinto diseñado para que te equivoques. Nosotros somos tu mapa y tu brújula."</strong>
+      No somos los contadores que solo aparecen para pedirte facturas a fin de mes. Somos tus aliados financieros. Gestionamos tus impuestos con precisión quirúrgica para garantizar cumplimiento total ante la SUNAT y, lo más importante, optimizamos tu carga fiscal legalmente para que tu flujo de caja respire. Paga lo justo".
     </p>
 
     <!-- CTA -->
@@ -49,67 +43,68 @@ const rows = [
         class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-black hover:opacity-90 transition-opacity no-underline"
         style="background: var(--gradient-btn)"
       >
-       ORDENAR MI EMPRESA →
+        ORDENAR MI EMPRESA →
       </a>
     </div>
   </div>
 
   <!-- Right: PDT card -->
-  <div
-    class="rounded-2xl p-7 shadow-[0_8px_48px_rgba(0,0,0,0.08)]"
-    style="background: #fff; border: 1px solid rgba(0,0,0,0.07)"
-  >
-    <!-- Card header -->
-    <div class="flex items-start justify-between mb-6">
-      <div>
-        <div class="text-base font-bold text-[var(--black)]">
-          PDT 621 — Abril 2026
-        </div>
-        <div class="text-[0.73rem] text-[#888] mt-0.5">
-          RUC&nbsp; 20·123456789
-        </div>
-      </div>
-      <span
-        class="inline-flex items-center gap-1.5 text-[0.72rem] font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full"
-      >
-        <span class="w-[6px] h-[6px] rounded-full bg-green-500"></span>
-        Presentado
-      </span>
-    </div>
-
-    <!-- Rows -->
-    <div class="flex flex-col divide-y divide-[#f0f0f0]">
-      {
-        rows.map((row) => (
-          <div class="flex justify-between items-center py-3">
-            <span class="text-[0.875rem] text-[#555]">{row.label}</span>
-            <span class="text-[0.875rem] font-medium text-[#333] tabular-nums">
-              {row.value}
-            </span>
-          </div>
-        ))
-      }
-    </div>
-
-    <!-- Total -->
-    <div class="mt-4 pt-4 border-t border-[#eee]">
-      <div class="flex justify-between items-start">
-        <div>
-          <div
-            class="text-[0.7rem] font-bold tracking-[0.08em] text-[#999] uppercase"
-          >
-            Total a pagar
-          </div>
-          <div class="text-[0.72rem] text-green-600 font-medium mt-0.5">
-            Ahorro optimizado: S/ 3,410
-          </div>
-        </div>
-        <div
-          class="text-[1.6rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange tabular-nums"
-        >
-          S/18,240.00
-        </div>
-      </div>
-    </div>
+  <div class="contabilidad-img -mx-3.5 h-full cursor-default select-none overflow-clip [mask-image:radial-gradient(180%_95%_at_-10%_0%,black_80%,transparent_100%)]">
+    <Image src={"/frame-2.svg"} alt={"Panel de contabilidad"} width={600} height={600} class={"mx-3.5 origin-top scale-95 rounded-xl border border-neutral-200 bg-white shadow-[0_20px_20px_0_#00000017] md:origin-top-left"} />
   </div>
 </section>
+
+<style>
+  .contabilidad-section {
+    overflow: clip;
+  }
+
+  /* Estado inicial */
+  .contabilidad-text {
+    opacity: 0; 
+    transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contabilidad-img {
+    opacity: 0;
+    transform: translateX(160px);
+    transition:
+      opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (max-width: 768px) {
+    .contabilidad-img { transform: translateX(60px); }
+  }
+
+  /* Estado visible */
+  .contabilidad-text.in-view {
+    opacity: 1;
+  }
+
+  .contabilidad-img.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const section = document.querySelector(".contabilidad-section") as HTMLElement;
+  const text    = document.querySelector(".contabilidad-text") as HTMLElement;
+  const img     = document.querySelector(".contabilidad-img") as HTMLElement;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        text.classList.add("in-view");
+        img.classList.add("in-view");
+      } else {
+        text.classList.remove("in-view");
+        img.classList.remove("in-view");
+      }
+    },
+    { threshold: window.innerWidth < 768 ? 0.15 : 0.75 }
+  );
+
+  observer.observe(section);
+</script>

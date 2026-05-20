@@ -4,7 +4,7 @@ const navLinks = [
   { label: "Legal", href: "/legal", hasArrow: false },
   { label: "Automatización", href: "/automatizacion", hasArrow: true },
   { label: "Recursos", href: "#", hasArrow: true },
-  { label: "Únete", href: "/unetee", hasArrow: false },
+  { label: "Únete", href: "/unete", hasArrow: false },
 ];
 
 const recursos = [
@@ -28,8 +28,8 @@ const recursos = [
      ============================================================ -->
 <header
   id="site-header"
-  class="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.06]"
-  style="background:#000"
+  class="fixed left-0 right-0 top-0 z-50 "
+  style="backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: transparent; transition: background 0.3s ease;"
 >
   <div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
 
@@ -50,14 +50,47 @@ const recursos = [
     <!-- Desktop nav (oculto en móvil) -->
     <nav class="hidden md:flex flex-1 justify-center items-center gap-6">
       {
-        navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-white/75 text-sm font-medium hover:text-white transition-colors no-underline hover:bg-white/[0.05] px-4 py-1.5 rounded-lg"
-          >
-            {link.label}
-          </a>
-        ))
+        navLinks.map((link) =>
+          link.label === "Recursos" ? (
+            <div class="relative" id="recursos-dropdown">
+              <button
+                id="recursos-btn"
+                class="flex items-center gap-1 text-white/75 text-sm font-medium hover:text-white transition-colors hover:bg-white/[0.2] px-4 py-1.5 rounded-lg cursor-pointer"
+              >
+                {link.label}
+                <svg id="recursos-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;">
+                  <path d="M3 5l4 4 4-4"></path>
+                </svg>
+              </button>
+
+              <div
+                id="recursos-panel"
+                class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl border border-white/[0.08] p-2 opacity-0 pointer-events-none transition-all duration-200 translate-y-1"
+                style="background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
+              >
+                {recursos.map((r) => (
+                  <a
+                    href={r.href}
+                    class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-white/[0.07] transition-colors no-underline group"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/50 group-hover:text-white/80 transition-colors mt-0.5 shrink-0" set:html={r.icon} />
+                    <div>
+                      <p class="text-white text-sm font-medium m-0">{r.label}</p>
+                      <p class="text-white/50 text-xs m-0 mt-0.5">{r.description}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class="text-white/75 text-sm font-medium hover:text-white transition-colors no-underline hover:bg-white/[0.2] px-4 py-1.5 rounded-lg"
+            >
+              {link.label}
+            </a>
+          )
+        )
       }
     </nav>
 
@@ -75,7 +108,7 @@ const recursos = [
       <button
         id="menu-open"
         aria-label="Abrir menú"
-        class="flex flex-col justify-center items-center w-10 h-10 gap-[6px] md:hidden"
+        class="flex flex-col justify-center items-center w-10 h-10 gap-[6px] md:hidden cursor-pointer"
       >
         <span class="block w-6 h-[2px] bg-white rounded-full self-end"></span>
         <span class="block w-6 h-[2px] bg-white rounded-full self-end"></span>
@@ -111,7 +144,7 @@ const recursos = [
     </a>
 
     <!-- Botón X (cerrar) -->
-    <button id="menu-close" aria-label="Cerrar menú" class="w-10 h-10 flex items-center justify-center text-white">
+    <button id="menu-close" aria-label="Cerrar menú" class="w-10 h-10 flex items-center justify-center text-white cursor-pointer">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <line x1="3" y1="3" x2="19" y2="19"></line>
         <line x1="19" y1="3" x2="3" y2="19"></line>
@@ -122,31 +155,78 @@ const recursos = [
   <!-- Items del menú -->
   <nav class="flex-1 overflow-y-auto">
     {
-      navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="flex items-center justify-between px-6 py-6 border-b border-white/[0.08] no-underline group"
-        >
-          <span class="text-white text-[1.6rem] font-light tracking-tight group-hover:opacity-70 transition-opacity">
-            {link.label}
-          </span>
-          {link.hasArrow && (
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="opacity-60 group-hover:opacity-100 transition-opacity"
+      navLinks.map((link) =>
+        link.label === "Recursos" ? (
+          <div class="border-b border-white/[0.08]">
+            <button
+              id="recursos-mobile-btn"
+              class="w-full flex items-center justify-between px-6 py-6 group"
             >
-              <path d="M7 4l6 6-6 6"></path>
-            </svg>
-          )}
-        </a>
-      ))
+              <span class="text-white text-[1.6rem] font-light tracking-tight group-hover:opacity-70 transition-opacity">
+                {link.label}
+              </span>
+              <svg
+                id="recursos-mobile-chevron"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="opacity-60 transition-transform duration-300"
+              >
+                <path d="M5 8l5 5 5-5"></path>
+              </svg>
+            </button>
+
+            <div
+              id="recursos-mobile-panel"
+              class="overflow-hidden transition-all duration-300"
+              style="max-height: 0;"
+            >
+              {recursos.map((r) => (
+                <a
+                  href={r.href}
+                  class="flex items-start gap-4 px-8 py-4 no-underline group border-t border-white/[0.05]"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/40 group-hover:text-white/70 transition-colors mt-0.5 shrink-0" set:html={r.icon} />
+                  <div>
+                    <p class="text-white text-base font-medium m-0 group-hover:opacity-70 transition-opacity">{r.label}</p>
+                    <p class="text-white/40 text-sm m-0 mt-0.5">{r.description}</p>
+                  </div>
+                </a>
+              ))}
+              <div class="h-4" />
+            </div>
+          </div>
+        ) : (
+          <a
+            href={link.href}
+            class="flex items-center justify-between px-6 py-6 border-b border-white/[0.08] no-underline group"
+          >
+            <span class="text-white text-[1.6rem] font-light tracking-tight group-hover:opacity-70 transition-opacity">
+              {link.label}
+            </span>
+            {link.hasArrow && (
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="opacity-60 group-hover:opacity-100 transition-opacity"
+              >
+                <path d="M7 4l6 6-6 6"></path>
+              </svg>
+            )}
+          </a>
+        )
+      )
     }
 
     <!-- CTA en el overlay -->
@@ -166,6 +246,68 @@ const recursos = [
      SCRIPT
      ============================================================ -->
 <script>
+  const header = document.getElementById("site-header") as HTMLElement;
+  const HEADER_H = 64;
+
+  function updateHeader() {
+    let bg = window.scrollY > 10 ? "#000" : "transparent";
+
+    // Override si una sección con data-header-bg cubre el header
+    document.querySelectorAll<HTMLElement>("[data-header-bg]").forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= HEADER_H && rect.bottom > HEADER_H) {
+        bg = section.dataset.headerBg!;
+      }
+    });
+
+    header.style.background = bg;
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader();
+
+  // Recursos dropdown
+  const recursosBtn = document.getElementById("recursos-btn");
+  const recursosPanel = document.getElementById("recursos-panel");
+
+  const recursosChevron = document.getElementById("recursos-chevron");
+
+  function openRecursos() {
+    recursosPanel!.classList.remove("opacity-0", "pointer-events-none", "translate-y-1");
+    recursosPanel!.classList.add("opacity-100", "translate-y-0");
+    recursosChevron!.style.transform = "rotate(180deg)";
+  }
+  function closeRecursos() {
+    recursosPanel!.classList.add("opacity-0", "pointer-events-none", "translate-y-1");
+    recursosPanel!.classList.remove("opacity-100", "translate-y-0");
+    recursosChevron!.style.transform = "rotate(0deg)";
+  }
+
+  recursosBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = !recursosPanel!.classList.contains("opacity-0");
+    isOpen ? closeRecursos() : openRecursos();
+  });
+
+  document.addEventListener("click", () => closeRecursos());
+
+  // Recursos acordeón móvil
+  const recursosMobileBtn = document.getElementById("recursos-mobile-btn");
+  const recursosMobilePanel = document.getElementById("recursos-mobile-panel");
+  const recursosMobileChevron = document.getElementById("recursos-mobile-chevron");
+  let recursosMobileOpen = false;
+
+  recursosMobileBtn?.addEventListener("click", () => {
+    recursosMobileOpen = !recursosMobileOpen;
+    if (recursosMobileOpen) {
+      recursosMobilePanel!.style.maxHeight = recursosMobilePanel!.scrollHeight + "px";
+      recursosMobileChevron!.style.transform = "rotate(180deg)";
+    } else {
+      recursosMobilePanel!.style.maxHeight = "0";
+      recursosMobileChevron!.style.transform = "rotate(0deg)";
+    }
+  });
+
   const openBtn = document.getElementById("menu-open");
   const closeBtn = document.getElementById("menu-close");
   const menu = document.getElementById("mobile-menu");
