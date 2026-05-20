@@ -1,13 +1,14 @@
 ---
+import Image from "astro/components/Image.astro";
+
 const servicios = [
-  { label: "Contabilidad", href: "#" },
-  { label: "Legal", href: "#" },
-  { label: "Automatización", href: "#" },
+  { label: "Contabilidad", href: "/contabilidad" },
+  { label: "Legal", href: "/legal" },
+  { label: "Automatización", href: "/automatizacion" },
 ];
 
 const recursos = [
-  { label: "Blog", href: "#" },
-  { label: "Calculadora tributaria", href: "#" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const contacto = [
@@ -16,11 +17,6 @@ const contacto = [
   { label: "Lima, Perú", href: "#" },
 ];
 
-const legal = [
-  { label: "Términos", href: "#" },
-  { label: "Privacidad", href: "#" },
-  { label: "Cookies", href: "#" },
-];
 ---
 
 <footer class="border-t border-[#eee]">
@@ -31,18 +27,8 @@ const legal = [
     <!-- Brand -->
     <div class="flex flex-col gap-4">
       <a href="/" class="flex items-center gap-2 no-underline w-fit">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <polygon points="0,0 22,11 0,22" fill="url(#footer-grad)"></polygon>
-          <defs>
-            <linearGradient id="footer-grad" x1="0" y1="0" x2="22" y2="22">
-              <stop offset="0%" stop-color="var(--pink)"></stop>
-              <stop offset="100%" stop-color="var(--orange)"></stop>
-            </linearGradient>
-          </defs>
-        </svg>
-        <span class="text-base font-bold tracking-[0.08em] text-[var(--black)]"
-          >EMMERGIA</span
-        >
+             <Image src="/logo_emmergia.webp" alt="Logo EMMERGIA" width="650" height="149" class="w-full h-16 filter brightness-0"/>
+
       </a>
       <p class="text-[0.85rem] text-[#666] leading-relaxed m-0 max-w-[220px]">
         Estudio contable de próxima generación. Contabilidad, legal y
@@ -53,7 +39,7 @@ const legal = [
     <!-- Servicios -->
     <div class="flex flex-col gap-4">
       <span
-        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        class="text-[0.7rem] font-black text-[#999] uppercase"
         >Servicios</span
       >
       <ul class="flex flex-col gap-3 list-none m-0 p-0">
@@ -75,7 +61,7 @@ const legal = [
     <!-- Recursos -->
     <div class="flex flex-col gap-4">
       <span
-        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        class="text-[0.7rem] font-black text-[#999] uppercase"
         >Recursos</span
       >
       <ul class="flex flex-col gap-3 list-none m-0 p-0">
@@ -97,7 +83,7 @@ const legal = [
     <!-- Contacto -->
     <div class="flex flex-col gap-4">
       <span
-        class="text-[0.7rem] font-bold tracking-[0.15em] text-[#999] uppercase"
+        class="text-[0.7rem] font-black text-[#999] uppercase"
         >Contacto</span
       >
       <ul class="flex flex-col gap-3 list-none m-0 p-0">

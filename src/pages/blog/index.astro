@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/ui/Hero.astro";
+import Footer from "../../components/ui/Footer.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("es-PE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+---
+
+<Layout>
+  <!-- Dark hero section -->
+  <div style="background: var(--gradient-bg); color: var(--white)">
+    <Hero />
+    <section class="max-w-[1280px] mx-auto px-8 py-32 text-center">
+      <span
+        class="inline-block text-[0.72rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-6"
+        style="background: rgba(240,0,127,0.15); color: var(--pink); border: 1px solid rgba(240,0,127,0.25);"
+      >
+        Recursos
+      </span>
+      <h1
+        class="font-obli text-5xl md:text-6xl font-bold leading-tight text-white m-0 text-balance"
+        data-animate="fade-up"
+      >
+        Blog &amp;
+        <em
+          class="not-italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
+        >
+          Recursos
+        </em>
+      </h1>
+      <p
+        class="text-[0.975rem] text-white/65 leading-relaxed max-w-[520px] mx-auto mt-5 mb-0"
+        data-animate="fade-up"
+        data-animate-delay="100"
+      >
+        Guías prácticas sobre tributación, contabilidad y gestión empresarial en
+        Perú. Escritas por nuestros especialistas para que tomes mejores
+        decisiones.
+      </p>
+    </section>
+  </div>
+
+  <!-- Posts grid -->
+  <section class="bg-white">
+    <div class="max-w-[1280px] mx-auto px-8 py-20">
+      {
+        posts.length === 0 ? (
+          <p class="text-center text-[#999] py-16">
+            Próximamente publicaremos nuevos artículos.
+          </p>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post, i) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="group flex flex-col rounded-2xl border border-[#eee] bg-white overflow-hidden no-underline transition-shadow duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)]"
+                data-animate="fade-up"
+                data-animate-delay={`${i * 80}`}
+              >
+                <!-- Card body -->
+                <div class="flex flex-col gap-3 p-7 flex-1">
+                  <!-- Category badge -->
+                  <span
+                    class="inline-block self-start text-[0.68rem] font-bold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full"
+                    style="background: rgba(240,0,127,0.08); color: var(--pink);"
+                  >
+                    {post.data.category}
+                  </span>
+
+                  <!-- Title -->
+                  <h2 class="font-obli text-[1.2rem] font-bold leading-snug text-[var(--black)] m-0 group-hover:text-[var(--pink)] transition-colors">
+                    {post.data.title}
+                  </h2>
+
+                  <!-- Description -->
+                  <p class="text-[0.875rem] text-[#666] leading-relaxed m-0 line-clamp-3 flex-1">
+                    {post.data.description}
+                  </p>
+                </div>
+
+                <!-- Card footer -->
+                <div class="flex items-center justify-between px-7 py-4 border-t border-[#f0f0f0]">
+                  <span class="text-[0.78rem] text-[#aaa]">
+                    {formatDate(post.data.date)}
+                  </span>
+                  <span class="flex items-center gap-1 text-[0.78rem] text-[#aaa]">
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {post.data.readTime}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
