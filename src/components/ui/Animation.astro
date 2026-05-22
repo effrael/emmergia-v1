@@ -1,0 +1,186 @@
+---
+import { DollarSign, CreditCard, Receipt } from "@lucide/astro";
+---
+<div class="relative size-full">
+  <div
+    class="size-full select-none overflow-hidden [mask-image:linear-gradient(black_75%,transparent)]"
+    aria-hidden="true"
+  >
+    <div class="relative z-0 mx-auto flex size-full max-w-xs flex-col items-center md:scale-140 origin-top">
+
+      <!-- Stats card -->
+      <div class="shrink-0 rounded-lg border border-neutral-200 bg-white p-1.5 w-full shadow-xl">
+        <div class="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-neutral-200 bg-neutral-200">
+          <!-- IGV -->
+          <div class="flex h-full items-center gap-2.5 bg-neutral-100 p-2.5  ">
+            <div class="flex size-8 shrink-0 items-center justify-center rounded-md border border-white bg-white">
+              <DollarSign size={20} className="text-black"/>
+            </div>
+            <div class="flex h-full flex-col justify-center">
+              <span class="text-[0.625rem] text-neutral-500">IGV Gestionado</span>
+              <span id="anim-igv" class="text-base font-black text-neutral-800">S/ 14,2 mil</span>
+            </div>
+          </div>
+          <!-- Declaraciones -->
+          <div class="flex h-full items-center gap-2.5 bg-neutral-100 p-2.5  ">
+            <div class="flex size-8 shrink-0 items-center justify-center rounded-md border border-white bg-white">
+              <CreditCard size={16} class="text-neutral-900" />
+            </div>
+            <div class="flex h-full flex-col justify-center">
+              <span class="text-[0.625rem] text-neutral-500">Declaraciones</span>
+              <span class="text-base font-black text-neutral-800">1,8 mil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="h-5 w-px shrink-0" style="background: var(--gradient-btn)"></div>
+
+      <!-- Badge -->
+      <div class="relative z-10 flex shrink-0 items-center gap-2 rounded-lg bg-white/30 p-1 pr-3 shadow-lg">
+        <div class="flex size-6 shrink-0 items-center justify-center rounded-md bg-white">
+          <Receipt size={14} class="text-neutral-900" />
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-white">
+          <span class="font-normal">Nuevo tributo</span>
+          <span id="anim-badge" class="font-bold text-white/70">S/ 0</span>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="h-5 w-px shrink-0" style="background: var(--gradient-btn)"></div>
+
+      <!-- Scrolling list -->
+      <div class="relative w-full overflow-hidden h-20 md:h-auto" style="mask-image:linear-gradient(black 55%,transparent 100%);-webkit-mask-image:linear-gradient(black 55%,transparent 100%)">
+        <div
+          id="anim-list"
+          class="relative gap-2 flex w-full flex-col transition-transform duration-300 ease-in-out"
+        >
+          <!-- rows injected by JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const ITEM_H  = 40;   // h-10 = 40px
+  const TICK    = 2200; // ms entre cada item nuevo
+
+  const empresas = [
+    { nombre: "Consorcio Lima SAC",  monto: 4120  },
+    { nombre: "Alfa Import EIRL",    monto: 1350  },
+    { nombre: "Andina Tech Perú",    monto: 4300  },
+    { nombre: "Grupo María SAC",     monto: 2180  },
+    { nombre: "Norte Import SAC",    monto: 2360  },
+    { nombre: "Verde Retail SA",     monto: 3410  },
+    { nombre: "Pacific Solutions",   monto: 3201  },
+    { nombre: "Lima Ventures SAC",   monto: 2890  },
+    { nombre: "Inversiones Rímac",   monto: 5100  },
+    { nombre: "Torres & Cía SAC",    monto: 1870  },
+  ];
+
+  const listEl  = document.getElementById("anim-list")  as HTMLElement;
+  const igvEl   = document.getElementById("anim-igv")   as HTMLElement;
+  const badgeEl = document.getElementById("anim-badge") as HTMLElement;
+
+  let visibleStart = 0; // índice del primer item visible
+  let totalIgv     = 14200;
+
+  function fmt(n: number) {
+    return "S/ " + n.toLocaleString("es-PE");
+  }
+
+  function fmtMil(n: number) {
+    if (n >= 1000) return "S/ " + (n / 1000).toFixed(1).replace(".", ",") + " mil";
+    return fmt(n);
+  }
+
+  function animCount(el: HTMLElement, from: number, to: number, useMil = false) {
+    const dur = 700, start = performance.now();
+    (function tick(now: number) {
+      const p   = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val  = Math.round(from + (to - from) * ease);
+      el.textContent = useMil ? fmtMil(val) : fmt(val);
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  }
+
+  function makeRow(item: { nombre: string; monto: number }, isFirst: boolean) {
+    const row = document.createElement("div");
+    row.className = "flex h-10 items-center justify-between gap-2 rounded-md  bg-white/80 pl-2 pr-4 text-[0.625rem]";
+    row.style.cssText = `
+      transform: scaleX(${isFirst ? "1" : "0.8"});
+      transform-origin: center;
+      transition: transform 0.35s ease;
+    `;
+    const initial = item.nombre[0];
+    row.innerHTML = `
+      <div class="flex items-center gap-2">
+        <div class="size-5 rounded-full flex items-center justify-center text-white font-bold text-[0.55rem] shrink-0"
+             style="background:linear-gradient(135deg,#f0007f,#f77c1e)">${initial}</div>
+        <span class="text-neutral-800">${item.nombre}</span>
+      </div>
+      <span class="flex items-center gap-0.5 text-neutral-500 font-black">
+        ${fmt(item.monto)}
+      </span>
+    `;
+    return row;
+  }
+
+  function renderVisible() {
+    listEl.innerHTML = "";
+    for (let i = 0; i < 4; i++) {
+      const item = empresas[(visibleStart + i) % empresas.length];
+      listEl.appendChild(makeRow(item, i === 0));
+    }
+  }
+
+  renderVisible();
+
+  function tick() {
+    const incoming = empresas[(visibleStart + 3) % empresas.length];
+
+    // Fila 0: desvanecer mientras sube
+    const firstRow = listEl.children[0] as HTMLElement;
+    if (firstRow) {
+      firstRow.style.transition = "opacity 0.35s ease";
+      firstRow.style.opacity    = "0";
+    }
+
+    // Fila 1: animar scaleX 0.8 → 1 (pasa a ser la primera)
+    const secondRow = listEl.children[1] as HTMLElement;
+    if (secondRow) {
+      secondRow.style.transform = "scaleX(1)";
+    }
+
+    // Animar lista hacia arriba
+    listEl.style.transition = "transform 0.35s cubic-bezier(0.4,0,0.2,1)";
+    listEl.style.transform  = `translateY(-${ITEM_H}px)`;
+
+    // badge y contador — ambos con animación de conteo
+    const prevBadge = empresas[(visibleStart + 2) % empresas.length].monto;
+    animCount(badgeEl, prevBadge, incoming.monto, false);
+    const newTotal = totalIgv + incoming.monto;
+    if (newTotal >= 99000) {
+      animCount(igvEl, totalIgv, 99000, true);
+      setTimeout(() => { totalIgv = 14200; }, 800);
+    } else {
+      animCount(igvEl, totalIgv, newTotal, true);
+      totalIgv = newTotal;
+    }
+
+    // Tras la transición: avanzar índice y re-renderizar sin animación
+    setTimeout(() => {
+      visibleStart = (visibleStart + 1) % empresas.length;
+      listEl.style.transition = "none";
+      listEl.style.transform  = "translateY(0)";
+      renderVisible();
+    }, 360);
+  }
+
+  setInterval(tick, TICK);
+</script>

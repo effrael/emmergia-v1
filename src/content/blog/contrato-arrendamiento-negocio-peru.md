@@ -61,4 +61,4 @@ Para arrendamientos de más de 1 año o aquellos en los que has hecho inversione
 Un contrato de arrendamiento bien redactado no es un gasto: es la inversión legal de más alto retorno que puedes hacer para proteger tu negocio. El costo de un contrato elaborado por un abogado especializado (entre S/ 300 y S/ 1,500 según la complejidad) es insignificante comparado con los meses de litigio y el dinero que puede costarte un contrato mal hecho.
 
 ---
-¿Necesitas que un abogado especialista revise tu contrato de arrendamiento actual o elabore uno nuevo? **[Consulta legal gratuita de 30 minutos →](https://wa.me/51999999999)**
+¿Necesitas que un abogado especialista revise tu contrato de arrendamiento actual o elabore uno nuevo? **[Consulta legal gratuita de 30 minutos →](https://wa.link/m7nowd)**

@@ -1,6 +1,7 @@
 ---
 import Image from "astro/components/Image.astro";
 import Hero from "../ui/Hero.astro";
+import Animation from "../ui/Animation.astro";
 ---
 
 <div style="background: var(--gradient-bg); color: var(--white)">
@@ -8,7 +9,7 @@ import Hero from "../ui/Hero.astro";
 
   <!-- HERO SECTION -->
   <section
-    class="max-w-[1280px] mx-auto px-8 py-24 grid md:grid-cols-2 items-center gap-16"
+    class="max-w-[1280px] mx-auto px-8 py-28 d:py-40 grid md:grid-cols-2 items-center gap-16"
   >
     <!-- Left -->
     <div class="flex flex-col gap-6">
@@ -17,40 +18,23 @@ import Hero from "../ui/Hero.astro";
       <!-- Headline -->
       <h1
         data-animate="fade-in"
-        class="font-obli text-5xl md:text-6xl leading-none tracking-[-0.025em] font-bold text-white mt-[18px] mb-[22px] text-balance"
+        class=" text-6xl leading-none tracking-[-0.025em] font-black text-white mt-[18px] mb-[22px] text-balance"
       >
-        Tu socio diseñado para
-        <span class="relative inline-block">
+        Tu socio diseñado para </br>
+        <span class="relative ">
           <span
             id="rotating-word"
-            class="italic font-semibold bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
-            >crecer tu negocio.</span
+            class="font-black h-10 text-5xl"
+
+            ></span
           >
-          <svg
-            viewBox="0 0 200 14"
-            preserveAspectRatio="none"
-            class="absolute left-0 right-0 bottom-[-6px] w-full h-[12px]"
-          >
-            <path
-              d="M2,8 C50,2 120,12 198,6"
-              stroke="url(#heroUnder)"
-              stroke-width="3"
-              fill="none"
-              stroke-linecap="round"></path>
-            <defs>
-              <linearGradient id="heroUnder" x1="0" x2="1">
-                <stop offset="0" stop-color="#F0007F"></stop>
-                <stop offset="1" stop-color="#F77C1E"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
         </span>
       </h1>
 
       <!-- Description -->
       <p
         data-animate="fade-in" data-animate-delay="120"
-        class="text-[0.975rem] text-white/80 leading-relaxed max-w-[460px] m-0"
+        class="text-[0.975rem] text-white/90 leading-relaxed max-w-[460px] m-0"
       >
         Integramos la Contabilidad, el blindaje Legal y la Automatización como
         un solo servicio. Simplificamos la complejidad regulatoria, repensamos
@@ -61,7 +45,8 @@ import Hero from "../ui/Hero.astro";
       <!-- CTAs -->
       <div data-animate="fade-in" data-animate-delay="220" class="flex items-center gap-4 flex-wrap">
         <a
-          href="#"
+          href="https://wa.link/m7nowd"
+          target="_blank"
           class="px-6 py-3 text-[0.95rem] font-black uppercase rounded-full text-white no-underline hover:opacity-90 transition-opacity"
           style="background: var(--gradient-btn)"
         >
@@ -72,20 +57,7 @@ import Hero from "../ui/Hero.astro";
 
     <!-- Right: Mock UI -->
     <div class="relative hero-images">
-      <Image
-        alt={"Dashboard"}
-        width={1920}
-        height={1080}
-        src={"/dashboard.svg"}
-        class={"shadow-xl hero-img-main"}
-      />
-      <Image
-        alt={"Dashboard"}
-        width={702}
-        height={408}
-        src={"/BG.svg"}
-        class={"w-1/2 rounded-xl absolute bottom-20 md:bottom-34 -right-5 md:-right-10 shadow-xl hero-img-secondary"}
-      />
+      <Animation />
     </div>
   </section>
 
@@ -112,7 +84,7 @@ import Hero from "../ui/Hero.astro";
   </div>
 </div><!-- end gradient wrapper -->
 
-<style>
+<style is:global>
   /* Hero images — scale desde top-right */
   .hero-img-main {
     opacity: 0;
@@ -123,30 +95,39 @@ import Hero from "../ui/Hero.astro";
   }
   .hero-img-secondary {
     opacity: 0;
-    transform: scale(0.88);
     transform-origin: top right;
-    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
-                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+    animation: float-secondary 3s ease-in-out infinite;
   }
-  .hero-images.is-visible .hero-img-main,
-  .hero-images.is-visible .hero-img-secondary {
+  .hero-images.is-visible .hero-img-main {
     opacity: 1;
     transform: scale(1);
+    animation: float-main 6s ease-in-out infinite;
+  }
+  .hero-images.is-visible .hero-img-secondary {
+    opacity: 1;
+  }
+
+  @keyframes float-main {
+    0%,  100% { transform: scale(1) translateY(0px);   }
+    50%        { transform: scale(1) translateY(-10px); }
+  }
+  @keyframes float-secondary {
+    0%,  100% { transform: translateY(0px);   }
+    50%        { transform: translateY(-12px); }
+  }
+
+  @keyframes letter-enter {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0);     }
+  }
+  @keyframes letter-exit {
+    from { opacity: 1; transform: translateY(0);    }
+    to   { opacity: 0; transform: translateY(10px); }
   }
 
   #rotating-word {
     display: inline-block;
-    transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
-  }
-  #rotating-word.exit {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  #rotating-word.enter {
-    opacity: 0;
-    transform: translateY(8px);
   }
 </style>
 
@@ -168,25 +149,59 @@ import Hero from "../ui/Hero.astro";
 
   // ── Rotating word ──
   const words = [
+    "crecer tu negocio.",
     "crecer tu patrimonio.",
-    "aumentar tus ventas",
-    "recudir tus procesos",
+    "aumentar tus ventas.",
+    "reducir tus procesos.",
   ];
   let index = 0;
   const el = document.getElementById("rotating-word") as HTMLElement;
 
-  setInterval(() => {
-    el.classList.add("exit");
-    setTimeout(() => {
+  const BASE  = 0.12;   // s — delay inicial (igual que referencia)
+  const STEP  = 0.015;  // s — stagger entre letras
+  const DUR   = 0.75;   // s — duración de cada letra
+
+  function enterWord(text: string) {
+    el.innerHTML = "";
+    [...text].forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.cssText = `
+        display: inline-block;
+        background: linear-gradient(to right, #f0007f, #f77c1e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: letter-enter ${DUR}s cubic-bezier(0.22,1,0.36,1) ${BASE + i * STEP}s both;
+      `;
+      el.appendChild(span);
+    });
+  }
+
+  function exitWord(): Promise<void> {
+    return new Promise((resolve) => {
+      const spans = el.querySelectorAll<HTMLElement>("span");
+      spans.forEach((s, i) => {
+        s.style.animation = `letter-exit ${DUR}s cubic-bezier(0.22,1,0.36,1) ${BASE + i * STEP}s both`;
+      });
+      const wait = (BASE + (spans.length - 1) * STEP + DUR) * 1000;
+      setTimeout(resolve, wait);
+    });
+  }
+
+  // Texto inicial
+  enterWord(words[0]);
+
+  async function cycle() {
+    await new Promise((r) => setTimeout(r, 3200));
+    while (true) {
+      await exitWord();
       index = (index + 1) % words.length;
-      el.textContent = words[index];
-      el.classList.remove("exit");
-      el.classList.add("enter");
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => el.classList.remove("enter")),
-      );
-    }, 300);
-  }, 2500);
+      enterWord(words[index]);
+      await new Promise((r) => setTimeout(r, 3200));
+    }
+  }
+  cycle();
 
   // ── Marquee infinito ──
   const logos = [

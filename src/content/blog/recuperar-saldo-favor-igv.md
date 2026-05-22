@@ -58,4 +58,4 @@ Si prestas o recibes servicios sujetos al Sistema de Detracciones, SUNAT retiene
 El saldo a favor del IGV es uno de los activos ocultos más importantes en el balance de muchas PYMES peruanas. No reclamarlo o no compensarlo correctamente es regalar capital de trabajo que necesitas. Con una contabilidad ordenada y un asesor que entienda estos mecanismos, puedes convertir tu crédito fiscal en una herramienta activa de gestión financiera.
 
 ---
-¿No sabes si tienes saldo a favor del IGV o cómo recuperarlo? **[Solicitar revisión de IGV gratuita →](https://wa.me/51999999999)**
+¿No sabes si tienes saldo a favor del IGV o cómo recuperarlo? **[Solicitar revisión de IGV gratuita →](https://wa.link/m7nowd)**

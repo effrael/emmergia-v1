@@ -76,4 +76,4 @@ Mezclar gastos personales con los del negocio no solo es un problema legal: tamb
 La planificación tributaria no es exclusiva de las grandes empresas. Es una herramienta que todo empresario PYME tiene derecho a usar. El ahorro promedio de una empresa bien asesorada puede superar el 15-20% de su carga tributaria anual. Para una empresa con S/ 10 millones de ingresos, eso puede significar S/ 30,000, S/ 50,000 o más de ahorro real en impuestos, completamente dentro de la ley.
 
 ---
-¿Cuánto estás pagando de más en impuestos? **[Solicitar diagnóstico tributario gratuito →](https://wa.me/51999999999)**
+¿Cuánto estás pagando de más en impuestos? **[Solicitar diagnóstico tributario gratuito →](https://wa.link/m7nowd)**

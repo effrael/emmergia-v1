@@ -1,5 +1,6 @@
 ---
 import Image from "astro/components/Image.astro";
+import Animation from "./Animation.astro";
 
 const servicios = [
   { label: "Contabilidad", href: "/contabilidad" },
@@ -13,7 +14,7 @@ const recursos = [
 
 const contacto = [
   { label: "WhatsApp", href: "https://wa.me/51999999999" },
-  { label: "hola@emmergia.pe", href: "mailto:hola@emmergia.biz" },
+  { label: "hola@emmergia.biz", href: "mailto:hola@emmergia.biz" },
   { label: "Lima, Perú", href: "#" },
 ];
 
@@ -27,11 +28,11 @@ const contacto = [
     <!-- Brand -->
     <div class="flex flex-col gap-4">
       <a href="/" class="flex items-center gap-2 no-underline w-fit">
-             <Image src="/logo_emmergia.webp" alt="Logo EMMERGIA" width="650" height="149" class="w-full h-16 filter brightness-0"/>
+             <Image src="/logo_emmergia.webp" alt="Logo EMMERGIA" width="650" height="149" class="w-full h-10 filter brightness-0"/>
 
       </a>
       <p class="text-[0.85rem] text-[#666] leading-relaxed m-0 max-w-[220px]">
-        Estudio contable de próxima generación. Contabilidad, legal y
+       Consultoría de próxima generación. Contabilidad, legal y
         automatización — integrados como un solo servicio.
       </p>
     </div>
@@ -116,78 +117,112 @@ const contacto = [
 </footer>
 
 <!-- WhatsApp Fixed Button -->
-<a
-  href="https://wa.me/51999999999"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="whatsapp-fab"
-  aria-label="Escríbenos por WhatsApp"
->
-  <!-- Ícono WhatsApp -->
-  <svg
-    class="whatsapp-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    width="26"
-    height="26"
-    fill="white"
+<div class="whatsapp-wrapper">
+  <span class="whatsapp-label">👋 ¡Hola! ¿Necesitas ayuda?</span>
+  <a
+    href="https://wa.me/51999999999"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-fab"
+    aria-label="Escríbenos por WhatsApp"
   >
-    <path d="M16 .004C7.164.004 0 7.168 0 16.004c0 2.824.738 5.478 2.027 7.788L.056 31.996l8.394-2.198A15.93 15.93 0 0016 32.004c8.836 0 16-7.164 16-16S24.836.004 16 .004zm0 29.12a13.1 13.1 0 01-6.68-1.826l-.478-.285-4.985 1.306 1.329-4.858-.312-.5A13.07 13.07 0 012.88 16.004C2.88 8.748 8.744 2.884 16 2.884c7.256 0 13.12 5.864 13.12 13.12S23.256 29.124 16 29.124zm7.19-9.822c-.394-.197-2.332-1.15-2.693-1.281-.362-.132-.625-.197-.888.197-.263.394-1.019 1.281-1.25 1.544-.23.263-.46.296-.854.099-.394-.197-1.664-.614-3.169-1.956-1.171-1.045-1.961-2.335-2.191-2.729-.23-.394-.025-.607.173-.803.177-.176.394-.46.591-.69.197-.23.263-.394.394-.657.132-.263.066-.493-.033-.69-.099-.197-.888-2.139-1.217-2.928-.32-.77-.645-.666-.888-.678l-.757-.013c-.263 0-.69.099-1.052.493-.362.394-1.382 1.35-1.382 3.292s1.415 3.817 1.612 4.08c.197.263 2.783 4.25 6.743 5.96.943.407 1.678.65 2.251.832.946.301 1.806.259 2.487.157.759-.113 2.332-.953 2.661-1.874.329-.92.329-1.71.23-1.874-.098-.164-.361-.263-.756-.46z"/>
-  </svg>
-  <span class="whatsapp-label">Escríbenos</span>
-</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width="26"
+      height="26"
+      fill="white"
+    >
+      <path d="M16 .004C7.164.004 0 7.168 0 16.004c0 2.824.738 5.478 2.027 7.788L.056 31.996l8.394-2.198A15.93 15.93 0 0016 32.004c8.836 0 16-7.164 16-16S24.836.004 16 .004zm0 29.12a13.1 13.1 0 01-6.68-1.826l-.478-.285-4.985 1.306 1.329-4.858-.312-.5A13.07 13.07 0 012.88 16.004C2.88 8.748 8.744 2.884 16 2.884c7.256 0 13.12 5.864 13.12 13.12S23.256 29.124 16 29.124zm7.19-9.822c-.394-.197-2.332-1.15-2.693-1.281-.362-.132-.625-.197-.888.197-.263.394-1.019 1.281-1.25 1.544-.23.263-.46.296-.854.099-.394-.197-1.664-.614-3.169-1.956-1.171-1.045-1.961-2.335-2.191-2.729-.23-.394-.025-.607.173-.803.177-.176.394-.46.591-.69.197-.23.263-.394.394-.657.132-.263.066-.493-.033-.69-.099-.197-.888-2.139-1.217-2.928-.32-.77-.645-.666-.888-.678l-.757-.013c-.263 0-.69.099-1.052.493-.362.394-1.382 1.35-1.382 3.292s1.415 3.817 1.612 4.08c.197.263 2.783 4.25 6.743 5.96.943.407 1.678.65 2.251.832.946.301 1.806.259 2.487.157.759-.113 2.332-.953 2.661-1.874.329-.92.329-1.71.23-1.874-.098-.164-.361-.263-.756-.46z"/>
+    </svg>
+  </a>
+</div>
 
 <style>
-  .whatsapp-fab {
+  .whatsapp-wrapper {
     position: fixed;
     bottom: 28px;
-    left: 28px;
+    right: 28px;
     z-index: 200;
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .whatsapp-wrapper.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .whatsapp-fab {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
     background: #25D366;
     border-radius: 999px;
-    padding: 13px;
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
     text-decoration: none;
-    overflow: hidden;
-    max-width: 52px;
-    transition:
-      max-width 0.35s cubic-bezier(.4,0,.2,1),
-      padding 0.35s cubic-bezier(.4,0,.2,1),
-      box-shadow 0.2s ease;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
   .whatsapp-fab:hover {
-    max-width: 200px;
-    padding: 13px 20px 13px 16px;
-    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
     background: #20ba5a;
-  }
-
-  .whatsapp-icon {
-    flex-shrink: 0;
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
+    transform: scale(1.07);
   }
 
   .whatsapp-label {
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.9rem;
+    background: #fff;
+    color: #111;
+    font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
+    padding: 7px 14px;
+    border-radius: 999px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     opacity: 0;
-    max-width: 0;
-    margin-left: 0;
-    transition:
-      opacity 0.2s ease 0.05s,
-      max-width 0.35s cubic-bezier(.4,0,.2,1),
-      margin-left 0.35s cubic-bezier(.4,0,.2,1);
+    transform: translateX(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
   }
 
-  .whatsapp-fab:hover .whatsapp-label {
+  .whatsapp-wrapper.label-visible .whatsapp-label {
     opacity: 1;
-    max-width: 140px;
-    margin-left: 10px;
+    transform: translateX(0);
   }
 </style>
+
+<script>
+  const wrapper = document.querySelector(".whatsapp-wrapper") as HTMLElement;
+  const trigger = document.querySelector(".contabilidad-section") as HTMLElement;
+
+  if (wrapper && trigger) {
+    let labelTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting || entry.boundingClientRect.top < 0;
+        wrapper.classList.toggle("is-visible", visible);
+
+        if (visible) {
+          labelTimer = setTimeout(() => {
+            wrapper.classList.add("label-visible");
+          }, 2000);
+        } else {
+          if (labelTimer) clearTimeout(labelTimer);
+          wrapper.classList.remove("label-visible");
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(trigger);
+  }
+</script>

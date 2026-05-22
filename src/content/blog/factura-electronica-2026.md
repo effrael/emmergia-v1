@@ -66,4 +66,4 @@ Una factura electrónica es un comprobante de pago emitido en formato digital, c
 La factura electrónica no es el enemigo del emprendedor; es su mejor herramienta de control cuando se usa bien. Emitir correctamente protege tu negocio de multas, te permite deducir gastos, acceder a crédito fiscal y ganar la confianza de clientes corporativos que exigen proveedores formales. Invierte 30 minutos en capacitarte en esto y evita perder miles de soles en multas innecesarias.
 
 ---
-¿Tienes dudas sobre qué sistema de facturación electrónica usar o cómo subsanar errores pasados ante SUNAT? **[Consulta gratis aquí →](https://wa.me/51999999999)**
+¿Tienes dudas sobre qué sistema de facturación electrónica usar o cómo subsanar errores pasados ante SUNAT? **[Consulta gratis aquí →](https://wa.link/m7nowd)**

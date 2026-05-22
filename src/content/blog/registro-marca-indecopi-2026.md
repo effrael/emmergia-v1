@@ -75,4 +75,4 @@ Toda marca se registra en una o más 'clases' de la Clasificación Internacional
 Registrar tu marca en INDECOPI es la inversión legal de mayor impacto que puedes hacer por tu PYME en el Perú. Por S/ 401 a S/ 535, obtienes 10 años de protección exclusiva sobre la identidad que has construido con esfuerzo. En un mercado donde el emprendimiento crece año a año y la competencia es feroz, tu marca registrada es tu escudo y tu activo más valioso.
 
 ---
-¿Quieres registrar tu marca en INDECOPI sin errores? Nuestro equipo legal te acompaña en todo el proceso. **[Inicia el registro de tu marca hoy →](https://wa.me/51999999999)**
+¿Quieres registrar tu marca en INDECOPI sin errores? Nuestro equipo legal te acompaña en todo el proceso. **[Inicia el registro de tu marca hoy →](https://wa.link/m7nowd)**
