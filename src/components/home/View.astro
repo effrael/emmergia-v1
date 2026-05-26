@@ -47,7 +47,7 @@ import Animation from "../ui/Animation.astro";
         <a
           href="https://wa.link/m7nowd"
           target="_blank"
-          class="px-6 py-3 text-[0.95rem] font-black uppercase rounded-full text-white no-underline hover:opacity-90 transition-opacity"
+          class="px-6 py-3 text-[0.95rem] font-black rounded-full text-white no-underline hover:opacity-90 transition-opacity"
           style="background: var(--gradient-btn)"
         >
           Agenda una reunión →
@@ -64,7 +64,7 @@ import Animation from "../ui/Animation.astro";
   <!-- LOGOS STRIP -->
   <div class="pt-8 pb-12 text-center overflow-hidden">
     <p class="text-[0.8rem] text-black/45 mb-6">
-      + 180 empresas peruanas confían su back-office a EMMERGIA
+    Por qué confían en nosotros
     </p>
     <div class="relative">
       <!-- fade edges -->
@@ -205,12 +205,16 @@ import Animation from "../ui/Animation.astro";
 
   // ── Marquee infinito ──
   const logos = [
-    "CONSORCIO LIMA",
-    "ALFA SAC",
-    "ANDINA TECH",
-    "GRUPO MARÍA",
-    "NORTE IMPORT",
-    "VERDE RETAIL",
+    "Experiencia Corporativa",
+    "Herramientas para crecer",
+    "Automatizaciones ",
+    "Ahorros Reales",
+    "Transparencia",
+    "Cero Multas",
+    "Atención en Línea",
+    "Asesoría gratuita",
+    "Precios a la medida",
+    "Profesionales a primer nivel",
   ];
 
   const track = document.getElementById("marquee-track") as HTMLElement;
@@ -220,7 +224,7 @@ import Animation from "../ui/Animation.astro";
     const span = document.createElement("span");
     span.textContent = name;
     span.className =
-      "text-[0.8rem] font-bold tracking-[0.1em] text-black/35 whitespace-nowrap";
+      "text-[0.8rem] font-bold tracking-[0.1em] text-black/35 whitespace-nowrap uppercase";
     track.appendChild(span);
   });
 

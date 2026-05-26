@@ -1,0 +1,121 @@
+---
+const faqs = [
+  {
+    q: "¿Para qué tamaño de empresa están diseñados sus servicios?",
+    a: "Nos especializamos en PYMEs peruanas con facturación anual entre S/ 5 millones y S/ 50 millones. Este segmento tiene necesidades contables, legales y tecnológicas que van más allá de lo que un estudio contable tradicional ofrece, pero no justifican un departamento financiero completo in-house.",
+  },
+  {
+    q: "¿Cómo funciona la garantía anti-multa?",
+    a: "Si tu empresa recibe una multa de SUNAT por un error atribuible a nuestro equipo en la declaración o presentación de obligaciones tributarias, EMMERGIA asume el 100% del costo de la sanción. Es nuestro compromiso con la calidad del servicio. Por eso mantenemos un record de 98.7% de declaraciones sin observaciones.",
+  },
+  {
+    q: "¿Qué tan rápido puedo empezar?",
+    a: "El onboarding completo toma 48-72 horas. Solo necesitas tu RUC, clave SOL, acceso bancario de lectura y los comprobantes del período actual. Nuestro equipo te guía paso a paso y comenzamos a operar desde la primera semana.",
+  },
+  {
+    q: "¿Necesito cambiar mi sistema contable o ERP actual?",
+    a: "No. Nuestra capa de automatización se integra con tu sistema existente (Concar, ContaPyme, Alegra, Defontana, etc.) y con tu banco. Potenciamos lo que ya tienes en lugar de reemplazarlo. Si no tienes sistema, te implementamos uno como parte del servicio.",
+  },
+  {
+    q: "¿En qué se diferencia EMMERGIA de un estudio contable tradicional?",
+    a: "Tres diferencias fundamentales: (1) <strong>Tecnología</strong> — usamos IA y automatización que elimina el 90% del trabajo manual y reduce errores a casi cero. (2) <strong>Servicio integral</strong> — contabilidad, legal y automatización en un solo equipo, sin coordinar con tres proveedores. (3) <strong>Enfoque estratégico</strong> — no solo presentamos declaraciones, optimizamos tu tributación y proyectamos tu flujo de caja con IA predictiva.",
+  },
+];
+---
+
+<section class="faq-section max-w-[1280px] mx-auto px-8 py-20">
+  <!-- Header -->
+  <div class="faq-header text-center mb-14" data-animate="fade-up">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <span class="w-8 h-[2px] bg-pink"></span>
+      <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">Preguntas frecuentes</span>
+      <span class="w-8 h-[2px] bg-pink"></span>
+    </div>
+    <h2 class="font-obli text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] text-[var(--black)] m-0">
+      Todo lo que necesitas<br />
+      <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
+        saber antes de empezar.
+      </em>
+    </h2>
+  </div>
+
+  <!-- Accordion -->
+  <div class="faq-list max-w-[800px] mx-auto flex flex-col">
+    {
+      faqs.map((item, i) => (
+        <div
+          class="faq-item border-b border-[#e5e5e5]"
+          data-animate="fade-up"
+          data-animate-delay={String(i * 80)}
+        >
+          <button
+            class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left bg-transparent border-none cursor-pointer group"
+            aria-expanded="false"
+          >
+            <span class="faq-question text-[1rem] md:text-[1.05rem] font-bold text-[var(--black)] leading-snug">
+              {item.q}
+            </span>
+            <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-lg font-bold transition-all duration-300"
+              style="background: var(--gradient-btn)">
+              +
+            </span>
+          </button>
+          <div class="faq-answer overflow-hidden" style="max-height: 0;">
+            <p
+              class="text-[0.95rem] text-[#555] leading-relaxed pb-6 m-0"
+              set:html={item.a}
+            />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq-btn:hover .faq-question {
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .faq-icon {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".faq-item").forEach((item) => {
+    const btn = item.querySelector<HTMLButtonElement>(".faq-btn")!;
+    const answer = item.querySelector<HTMLElement>(".faq-answer")!;
+    const inner = answer.querySelector("p")!;
+
+    btn.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+
+      // Close all
+      document.querySelectorAll<HTMLElement>(".faq-item.open").forEach((el) => {
+        el.classList.remove("open");
+        el.querySelector<HTMLButtonElement>(".faq-btn")!.setAttribute("aria-expanded", "false");
+        const a = el.querySelector<HTMLElement>(".faq-answer")!;
+        a.style.maxHeight = "0";
+      });
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+        answer.style.maxHeight = inner.scrollHeight + 24 + "px";
+      }
+    });
+  });
+</script>

@@ -1,111 +1,155 @@
 ---
-const services = [
+import Brain from "@lucide/astro/icons/brain";
+import Link2 from "@lucide/astro/icons/link-2";
+import TrendingUp from "@lucide/astro/icons/trending-up";
+
+const layers = [
   {
     num: "01",
-    title: "Estructura societaria",
-    desc: "Constitución, reorganización, fusiones. Bien hecho desde el inicio.",
+    tag: "Zero data entry",
+    title: "Captura inteligente (OCR + IA)",
+    desc: "Digitalización automática de facturas con OCR. La IA clasifica 9 de cada 10 movimientos sin intervención humana al tercer mes de uso. Eliminación total de digitación manual.",
   },
   {
     num: "02",
-    title: "Derecho laboral",
-    desc: "Contratos, despidos, políticas internas. Sin sorpresas ante Sunafil.",
+    tag: "Cero errores de conciliación",
+    title: "Conciliación & Validación",
+    desc: "Conciliación bancaria automática en tiempo real. Cruce de comprobantes con registros SUNAT. Detección de inconsistencias y alertas de anomalías antes del cierre mensual.",
   },
   {
     num: "03",
-    title: "Contratos comerciales",
-    desc: "Revisión y redacción. Cláusulas que te protegen, no que te exponen.",
+    tag: "De 5 días a 4 horas",
+    title: "Generación automática",
+    desc: "Libros electrónicos PLE/SIRE generados automáticamente. Declaraciones pre-llenadas para revisión final. Reportes gerenciales programados: flujo de caja, P&L, balance.",
   },
   {
     num: "04",
-    title: "Propiedad intelectual",
-    desc: "Registro de marca ante Indecopi. Protege lo que construiste.",
+    tag: "Tu CFO virtual",
+    title: "Dashboard & Forecasting",
+    desc: "Panel financiero en tiempo real accesible desde cualquier dispositivo. Proyecciones de flujo de caja con IA predictiva. Alertas inteligentes de vencimientos, cobranzas y riesgos.",
+  },
+];
+
+const perks = [
+  {
+    Icon: Brain,
+    title: "IA que aprende de ti",
+    desc: "Nuestro motor clasifica automáticamente el 90% de tus transacciones al tercer mes, adaptándose a tu plan de cuentas.",
   },
   {
-    num: "05",
-    title: "Defensa del consumidor",
-    desc: "Libro de reclamaciones, términos, políticas de devolución.",
+    Icon: Link2,
+    title: "Integraciones nativas",
+    desc: "Conectamos con tu ERP, banco y facturador electrónico. Sin cambiar de sistema — potenciamos el que ya tienes.",
   },
   {
-    num: "06",
-    title: "Debida diligencia",
-    desc: "Antes de firmar, sabemos qué estás firmando.",
+    Icon: TrendingUp,
+    title: "Forecasting predictivo",
+    desc: "Proyecciones de flujo de caja a 6 meses con IA. Anticipa escenarios y toma decisiones antes de que sea urgente.",
   },
 ];
 ---
 
-<!-- Hero -->
-<section class="max-w-[1280px] mx-auto px-8 py-32">
-  <!-- Breadcrumb -->
-  <nav class="flex items-center gap-2 text-[0.8rem] text-[#999] mb-6">
-    <a
-      href="/"
-      class="hover:text-pink transition-colors no-underline text-[#999]"
-      >Inicio</a
-    >
-    <span>›</span>
-    <span class="text-[#555]">Automatización</span>
-  </nav>
-
-  <!-- Eyebrow -->
-  <div class="flex items-center gap-3 mb-4">
-    <span class="w-8 h-[2px] bg-pink"></span>
-    <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase"
-      >Automatización</span
-    >
+<!-- 03 — Automatización & IA: DARK INTRO -->
+<section class="relative overflow-hidden py-32" style="background: var(--black);">
+  <!-- Radial glows -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full opacity-20"
+      style="background: radial-gradient(circle, var(--pink), transparent 70%);" />
+    <div class="absolute bottom-[-15%] left-[-5%] w-[500px] h-[500px] rounded-full opacity-15"
+      style="background: radial-gradient(circle, var(--orange), transparent 70%);" />
   </div>
 
-  <!-- Headline -->
-  <h1
-    class="font-obli text-[clamp(2.4rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-[var(--black)] m-0 mb-5"
-  >
-    De digitar manual<br />
-    <em
-      class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange"
-    >
-      a decidir con datos.
-    </em>
-  </h1>
+  <div class="relative max-w-[1280px] mx-auto px-8">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3 mb-8" data-animate="fade-up">
+      <span class="w-8 h-[2px] bg-pink"></span>
+      <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">03 — Automatización & IA contable</span>
+    </div>
 
-  <!-- Body -->
-  <p class="text-[0.95rem] text-[#555] leading-relaxed max-w-[520px] mb-7">
-    ¿Tu equipo contable sigue perdiendo horas picando datos y conciliando en
-    Excel? Implementamos ecosistemas de automatización que conectan ventas,
-    compras y bancos en tiempo real. Reducimos la carga operativa manual en 70%.
-  </p>
+    <!-- Headline -->
+    <div class="max-w-[760px] mb-16" data-animate="fade-up" data-animate-delay="80">
+      <h2 class="font-obli text-[clamp(2.2rem,4vw,3.4rem)] font-bold leading-[1.05] text-white m-0">
+        El 96% sabe que debe digitalizar.<br />
+        <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
+          Solo el 31% ha empezado.
+        </em>
+      </h2>
+    </div>
 
-  <!-- CTA -->
-  <div>
-    <a
-      href="https://wa.link/m7nowd"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
-      style="background: var(--gradient-btn)"
-    >
-      Automatizar mis procesos →
-    </a>
+    <!-- Stats + copy -->
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+      <!-- Stat 1 -->
+      <div class="flex flex-col gap-2" data-animate="fade-up" data-animate-delay="120">
+        <span class="font-obli text-[4.5rem] font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">3.9×</span>
+        <p class="text-[0.85rem] text-[#aaa] leading-relaxed m-0">
+          crecimiento proyectado en inversión IA en Perú — el mayor de Latinoamérica (Lenovo/IDC).
+        </p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="flex flex-col gap-2" data-animate="fade-up" data-animate-delay="200">
+        <span class="font-obli text-[4.5rem] font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">8/10</span>
+        <p class="text-[0.85rem] text-[#aaa] leading-relaxed m-0">
+          empresas integrarán IA al cierre de 2025 (Experis). Tu equipo contable debería estar entre ellas.
+        </p>
+      </div>
+
+      <!-- Copy -->
+      <div data-animate="fade-up" data-animate-delay="280">
+        <p class="text-[0.95rem] text-[#ccc] leading-relaxed m-0">
+          EMMERGIA implementa el <strong class="text-white">motor de automatización contable</strong> que elimina la digitación manual, concilia en tiempo real y genera reportes gerenciales sin intervención humana.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Services grid -->
-<section class="bg-[#f5f5f7] py-20">
+<!-- Framework 4 capas -->
+<section class="py-20 bg-[#f5f5f7]">
   <div class="max-w-[1280px] mx-auto px-8">
-    <div class="grid grid-cols-3 gap-5">
+
+    <p class="text-[0.75rem] font-bold tracking-[0.14em] text-[#999] uppercase mb-10 text-center" data-animate="fade-up">
+      Framework de 4 capas — Motor de automatización
+    </p>
+
+    <div class="grid md:grid-cols-4 gap-0 relative">
+
+      <!-- Connector line ondulada (desktop) -->
+      <svg class="hidden md:block absolute top-[27px] left-0 right-0 w-full h-[18px]" viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveA" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,9 C55,1 95,17 166,9 C237,1 277,17 333,9 C389,1 429,17 500,9 C571,1 611,17 666,9 C721,1 761,17 833,9 C889,1 945,17 1000,9"
+          fill="none" stroke="url(#waveA)" stroke-width="3"/>
+      </svg>
+
       {
-        services.map((s) => (
-          <div class="bg-white rounded-2xl p-7 flex flex-col gap-4 shadow-[0_2px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow border border-[#eee]">
-            <span
-              class="w-9 h-9 rounded-xl flex items-center justify-center text-[0.72rem] font-bold text-white"
+        layers.map((l, i) => (
+          <div
+            class="layer-card group relative z-10 flex flex-col items-center text-center gap-4 px-5 pt-6 pb-8 bg-transparent"
+            data-animate="fade-up"
+            data-animate-delay={String(i * 100)}
+          >
+            <div
+              class="w-[54px] h-[54px] shrink-0 rounded-full flex items-center justify-center text-white font-bold text-[0.9rem] shadow-[0_4px_20px_rgba(240,0,127,0.35)] transition-transform duration-300 group-hover:scale-110"
               style="background: var(--gradient-btn)"
             >
-              {s.num}
-            </span>
-            <div>
-              <div class="text-[0.95rem] font-bold text-[var(--black)] mb-1.5">
-                {s.title}
+              {l.num}
+            </div>
+
+            <div class="w-full rounded-2xl bg-white border border-[#e8e8e8] p-5 flex flex-col gap-3 shadow-[0_2px_12px_rgba(0,0,0,0.05)] group-hover:shadow-[0_8px_32px_rgba(240,0,127,0.12)] group-hover:border-pink/25 transition-all duration-300">
+              <span class="text-[0.65rem] font-bold tracking-[0.1em] uppercase"
+                style="background: var(--gradient-btn); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                {l.tag}
+              </span>
+              <div class="text-[0.88rem] font-bold text-[var(--black)] leading-snug">
+                {l.title}
               </div>
-              <p class="text-[0.83rem] text-[#666] leading-relaxed m-0">
-                {s.desc}
+              <p class="text-[0.78rem] text-[#666] leading-relaxed m-0">
+                {l.desc}
               </p>
             </div>
           </div>
@@ -114,3 +158,66 @@ const services = [
     </div>
   </div>
 </section>
+
+<!-- Perks: rama horizontal inferior -->
+<section class="py-16 bg-white border-t border-[#eee]">
+  <div class="max-w-[1280px] mx-auto px-8">
+    <div class="relative flex flex-col md:flex-row items-stretch gap-0" data-animate="fade-up">
+
+      <!-- Línea vertical ondulada (mobile) -->
+      <svg class="md:hidden absolute left-[22px] top-0 w-[10px] h-full" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveAV" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M5,0 C0,30 10,60 5,90 C0,120 10,150 5,180 C0,210 10,240 5,270 C0,300 10,330 5,360"
+          fill="none" stroke="url(#waveAV)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      </svg>
+
+      <!-- Línea horizontal ondulada (desktop) -->
+      <svg class="hidden md:block absolute top-[27px] left-0 right-0 w-full h-[18px]" viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveAH" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,9 C55,1 95,17 150,9 C205,1 245,17 300,9 C355,1 395,17 450,9 C505,1 545,17 600,9 C655,1 695,17 750,9 C805,1 845,17 900,9 C955,1 985,17 1000,9"
+          fill="none" stroke="url(#waveAH)" stroke-width="3"/>
+      </svg>
+
+      {
+        perks.map((p, i) => (
+          <div
+            class="group relative flex-1 flex flex-col items-center text-center gap-4 pb-8 md:pb-0 px-6"
+            data-animate="fade-up"
+            data-animate-delay={String(i * 120)}
+          >
+            <div
+              class="relative z-10 w-[54px] h-[54px] shrink-0 rounded-full flex items-center justify-center bg-white border-2 shadow-[0_4px_18px_rgba(240,0,127,0.2)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_6px_28px_rgba(240,0,127,0.35)]"
+              style="border-color: var(--pink);"
+            >
+              <p.Icon size={22} style="color: var(--pink); stroke-width: 1.75;" />
+            </div>
+
+            <div class="hidden md:block w-[2px] h-5 shrink-0"
+              style="background: linear-gradient(180deg, var(--pink), var(--orange));" aria-hidden="true" />
+
+            <div class="flex flex-col gap-1.5">
+              <div class="text-[0.92rem] font-bold text-[var(--black)]">{p.title}</div>
+              <p class="text-[0.8rem] text-[#666] leading-relaxed m-0 max-w-[220px] mx-auto">{p.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .layer-card { flex-direction: row; text-align: left; align-items: flex-start; padding: 0 0 1.5rem; }
+  }
+</style>

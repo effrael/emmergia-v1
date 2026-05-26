@@ -1,110 +1,224 @@
 ---
-const services = [
+import Landmark from "@lucide/astro/icons/landmark";
+import FileText from "@lucide/astro/icons/file-text";
+import LockKeyhole from "@lucide/astro/icons/lock-keyhole";
+
+const layers = [
   {
     num: "01",
-    title: "Estructura societaria",
-    desc: "Constitución, reorganización, fusiones. Bien hecho desde el inicio.",
+    tag: "Personalidad jurídica",
+    title: "Fundación & Estructura",
+    desc: "Constitución de empresa (SAC, SRL, EIRL) vía SID-SUNARP en 24-72h. Elección estratégica de tipo societario según plan de crecimiento, número de socios y protección patrimonial.",
   },
   {
     num: "02",
-    title: "Derecho laboral",
-    desc: "Contratos, despidos, políticas internas. Sin sorpresas ante Sunafil.",
+    tag: "Tu casa nunca en riesgo",
+    title: "Protección Patrimonial",
+    desc: "Separación legal entre patrimonio personal y empresarial. Alertas registrales SUNARP, contratos con cláusulas de limitación de responsabilidad, seguros de responsabilidad civil.",
   },
   {
     num: "03",
-    title: "Contratos comerciales",
-    desc: "Revisión y redacción. Cláusulas que te protegen, no que te exponen.",
+    tag: "Orden interno",
+    title: "Gobierno Corporativo",
+    desc: "Contratos laborales conformes a SUNAFIL, pactos de socios, poderes notariales, actas de junta, y protocolos de decisión que evitan conflictos societarios.",
   },
   {
     num: "04",
-    title: "Propiedad intelectual",
-    desc: "Registro de marca ante Indecopi. Protege lo que construiste.",
+    tag: "Activos intangibles protegidos",
+    title: "Defensa & Propiedad Intelectual",
+    desc: "Defensa ante fiscalizaciones SUNAT y SUNAFIL, registro de marca en INDECOPI, protección de secretos comerciales, y asesoría en propiedad intelectual.",
+  },
+];
+
+const perks = [
+  {
+    Icon: Landmark,
+    title: "Constitución express",
+    desc: "Tu empresa constituida y con RUC en 72 horas. Minuta, escritura pública, SUNARP y SUNAT — todo incluido.",
   },
   {
-    num: "05",
-    title: "Defensa del consumidor",
-    desc: "Libro de reclamaciones, términos, políticas de devolución.",
+    Icon: FileText,
+    title: "Contratos blindados",
+    desc: "Contratos laborales, comerciales y societarios revisados por abogados especializados en derecho empresarial peruano.",
   },
   {
-    num: "06",
-    title: "Debida diligencia",
-    desc: "Antes de firmar, sabemos qué estás firmando.",
+    Icon: LockKeyhole,
+    title: "Protección total",
+    desc: "Separación patrimonial, alertas SUNARP, y plan de contingencia legal para que tu patrimonio personal nunca esté en riesgo.",
   },
 ];
 ---
 
-<!-- Hero -->
-<section class="max-w-[1280px] mx-auto px-8 py-32">
-
-  <!-- Breadcrumb -->
-  <nav class="flex items-center gap-2 text-[0.8rem] text-[#999] mb-6">
-    <a href="/" class="hover:text-pink transition-colors no-underline text-[#999]">Inicio</a>
-    <span>›</span>
-    <span class="text-[#555]">Legal</span>
-  </nav>
-
-  <!-- Eyebrow -->
-  <div class="flex items-center gap-3 mb-4">
-    <span class="w-8 h-[2px] bg-pink"></span>
-    <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">Legal</span>
+<!-- 02 — Asesoría legal: DARK INTRO -->
+<section class="relative overflow-hidden py-32" style="background: var(--black);">
+  <!-- Radial glows -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full opacity-20"
+      style="background: radial-gradient(circle, var(--pink), transparent 70%);" />
+    <div class="absolute bottom-[-15%] left-[-5%] w-[500px] h-[500px] rounded-full opacity-15"
+      style="background: radial-gradient(circle, var(--orange), transparent 70%);" />
   </div>
 
-  <!-- Headline -->
-  <h1 class="font-obli text-[clamp(2.4rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-[var(--black)] m-0 mb-5">
-    Blindaje legal:<br />
-    <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
-      cimientos para crecer.
-    </em>
-  </h1>
+  <div class="relative max-w-[1280px] mx-auto px-8">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3 mb-8" data-animate="fade-up">
+      <span class="w-8 h-[2px] bg-pink"></span>
+      <span class="text-[0.75rem] font-bold tracking-[0.15em] text-pink uppercase">02 — Asesoría legal empresarial</span>
+    </div>
 
-  <!-- Body -->
-  <p class="text-[0.95rem] text-[#555] leading-relaxed max-w-[520px] mb-7">
-    Un contrato mal redactado puede destruir años de esfuerzo en un día. Desde la
-    estructura societaria hasta la protección de tu marca y relaciones laborales,
-    construimos un escudo invisible alrededor de tu patrimonio.
-  </p>
+    <!-- Headline -->
+    <div class="max-w-[720px] mb-16" data-animate="fade-up" data-animate-delay="80">
+      <h2 class="font-obli text-[clamp(2.2rem,4vw,3.4rem)] font-bold leading-[1.05] text-white m-0">
+        Tu patrimonio personal está en riesgo<br />
+        <em class="italic bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">
+          mientras no estés blindado legalmente.
+        </em>
+      </h2>
+    </div>
 
-  <!-- Tagline pill -->
-  <div
-    class="inline-flex w-fit px-4 py-2 rounded-full text-[0.8rem] font-medium mb-6"
-    style="border: 1.5px solid var(--orange); color: var(--orange)"
-  >
-    Seguridad jurídica en cada firma, en cada contrato, en cada paso.
-  </div>
+    <!-- Stats + copy -->
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+      <!-- Stat 1 -->
+      <div class="flex flex-col gap-2" data-animate="fade-up" data-animate-delay="120">
+        <span class="font-obli text-[4.5rem] font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">77k+</span>
+        <p class="text-[0.85rem] text-[#aaa] leading-relaxed m-0">
+          empresas creadas en Perú solo en Q4 2024.
+        </p>
+      </div>
 
-  <!-- CTA -->
-  <div>
-    <a
-      href="https://wa.link/m7nowd"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
-      style="background: var(--gradient-btn)"
-    >
-      Proteger mi patrimonio →
-    </a>
-  </div>
+      <!-- Stat 2 -->
+      <div class="flex flex-col gap-2" data-animate="fade-up" data-animate-delay="200">
+        <span class="font-obli text-[4.5rem] font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-pink to-orange">45%</span>
+        <p class="text-[0.85rem] text-[#aaa] leading-relaxed m-0">
+          cerrará antes de los 3 años. La diferencia es estructura legal desde el día uno.
+        </p>
+      </div>
 
-</section>
-
-<!-- Services grid -->
-<section class="bg-[#f5f5f7] py-20">
-  <div class="max-w-[1280px] mx-auto px-8">
-    <div class="grid grid-cols-3 gap-5">
-      {services.map((s) => (
-        <div class="bg-white rounded-2xl p-7 flex flex-col gap-4 shadow-[0_2px_16px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow border border-[#eee]">
-          <span
-            class="w-9 h-9 rounded-xl flex items-center justify-center text-[0.72rem] font-bold text-white"
-            style="background: var(--gradient-btn)"
-          >
-            {s.num}
-          </span>
-          <div>
-            <div class="text-[0.95rem] font-bold text-[var(--black)] mb-1.5">{s.title}</div>
-            <p class="text-[0.83rem] text-[#666] leading-relaxed m-0">{s.desc}</p>
-          </div>
-        </div>
-      ))}
+      <!-- Copy -->
+      <div data-animate="fade-up" data-animate-delay="280">
+        <p class="text-[0.95rem] text-[#ccc] leading-relaxed m-0">
+          EMMERGIA construye el <strong class="text-white">escudo legal de tu empresa</strong>: desde la constitución hasta la defensa ante SUNAT, SUNAFIL e INDECOPI. Protección real, no papeleo.
+        </p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Framework 4 capas -->
+<section class="py-20 bg-[#f5f5f7]">
+  <div class="max-w-[1280px] mx-auto px-8">
+
+    <p class="text-[0.75rem] font-bold tracking-[0.14em] text-[#999] uppercase mb-10 text-center" data-animate="fade-up">
+      Framework de 4 capas — Blindaje Legal PYME
+    </p>
+
+    <div class="grid md:grid-cols-4 gap-0 relative">
+
+      <!-- Connector line ondulada (desktop) -->
+      <svg class="hidden md:block absolute top-[27px] left-0 right-0 w-full h-[18px]" viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,9 C55,1 95,17 166,9 C237,1 277,17 333,9 C389,1 429,17 500,9 C571,1 611,17 666,9 C721,1 761,17 833,9 C889,1 945,17 1000,9"
+          fill="none" stroke="url(#waveL)" stroke-width="3"/>
+      </svg>
+
+      {
+        layers.map((l, i) => (
+          <div
+            class="layer-card group relative z-10 flex flex-col items-center text-center gap-4 px-5 pt-6 pb-8 bg-transparent"
+            data-animate="fade-up"
+            data-animate-delay={String(i * 100)}
+          >
+            <div
+              class="w-[54px] h-[54px] shrink-0 rounded-full flex items-center justify-center text-white font-bold text-[0.9rem] shadow-[0_4px_20px_rgba(240,0,127,0.35)] transition-transform duration-300 group-hover:scale-110"
+              style="background: var(--gradient-btn)"
+            >
+              {l.num}
+            </div>
+
+            <div class="w-full rounded-2xl bg-white border border-[#e8e8e8] p-5 flex flex-col gap-3 shadow-[0_2px_12px_rgba(0,0,0,0.05)] group-hover:shadow-[0_8px_32px_rgba(240,0,127,0.12)] group-hover:border-pink/25 transition-all duration-300">
+              <span class="text-[0.65rem] font-bold tracking-[0.1em] uppercase"
+                style="background: var(--gradient-btn); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                {l.tag}
+              </span>
+              <div class="text-[0.88rem] font-bold text-[var(--black)] leading-snug">
+                {l.title}
+              </div>
+              <p class="text-[0.78rem] text-[#666] leading-relaxed m-0">
+                {l.desc}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Perks: rama horizontal inferior -->
+<section class="py-16 bg-white border-t border-[#eee]">
+  <div class="max-w-[1280px] mx-auto px-8">
+    <div class="relative flex flex-col md:flex-row items-stretch gap-0" data-animate="fade-up">
+
+      <!-- Línea vertical ondulada (mobile) -->
+      <svg class="md:hidden absolute left-[22px] top-0 w-[10px] h-full" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveLV" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M5,0 C0,30 10,60 5,90 C0,120 10,150 5,180 C0,210 10,240 5,270 C0,300 10,330 5,360"
+          fill="none" stroke="url(#waveLV)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      </svg>
+
+      <!-- Línea horizontal ondulada (desktop) -->
+      <svg class="hidden md:block absolute top-[27px] left-0 right-0 w-full h-[18px]" viewBox="0 0 1000 18" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="waveLH" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f0007f"/>
+            <stop offset="100%" stop-color="#f77c1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,9 C55,1 95,17 150,9 C205,1 245,17 300,9 C355,1 395,17 450,9 C505,1 545,17 600,9 C655,1 695,17 750,9 C805,1 845,17 900,9 C955,1 985,17 1000,9"
+          fill="none" stroke="url(#waveLH)" stroke-width="3"/>
+      </svg>
+
+      {
+        perks.map((p, i) => (
+          <div
+            class="group relative flex-1 flex flex-col items-center text-center gap-4 pb-8 md:pb-0 px-6"
+            data-animate="fade-up"
+            data-animate-delay={String(i * 120)}
+          >
+            <div
+              class="relative z-10 w-[54px] h-[54px] shrink-0 rounded-full flex items-center justify-center bg-white border-2 shadow-[0_4px_18px_rgba(240,0,127,0.2)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_6px_28px_rgba(240,0,127,0.35)]"
+              style="border-color: var(--pink);"
+            >
+              <p.Icon size={22} style="color: var(--pink); stroke-width: 1.75;" />
+            </div>
+
+            <div class="hidden md:block w-[2px] h-5 shrink-0"
+              style="background: linear-gradient(180deg, var(--pink), var(--orange));" aria-hidden="true" />
+
+            <div class="flex flex-col gap-1.5">
+              <div class="text-[0.92rem] font-bold text-[var(--black)]">{p.title}</div>
+              <p class="text-[0.8rem] text-[#666] leading-relaxed m-0 max-w-[220px] mx-auto">{p.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .layer-card { flex-direction: row; text-align: left; align-items: flex-start; padding: 0 0 1.5rem; }
+    .layer-card .layer-body { flex: 1; }
+  }
+</style>
