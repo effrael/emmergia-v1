@@ -14,7 +14,7 @@ import { DollarSign, CreditCard, Receipt } from "@lucide/astro";
           <!-- IGV -->
           <div class="flex h-full items-center gap-2.5 bg-neutral-100 p-2.5  ">
             <div class="flex size-8 shrink-0 items-center justify-center rounded-md border border-white bg-white">
-              <DollarSign size={20} className="text-black"/>
+              <DollarSign size={20} class="text-black"/>
             </div>
             <div class="flex h-full flex-col justify-center">
               <span class="text-[0.625rem] text-neutral-500">IGV Gestionado</span>
@@ -42,9 +42,9 @@ import { DollarSign, CreditCard, Receipt } from "@lucide/astro";
         <div class="flex size-6 shrink-0 items-center justify-center rounded-md bg-white">
           <Receipt size={14} class="text-neutral-900" />
         </div>
-        <div class="flex items-center gap-1.5 text-xs text-white">
+        <div class="flex items-center gap-1.5 text-xs text-black/80">
           <span class="font-normal">Nuevo tributo</span>
-          <span id="anim-badge" class="font-bold text-white/70">S/ 0</span>
+          <span id="anim-badge" class="font-bold text-black/90">S/ 0</span>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ import { DollarSign, CreditCard, Receipt } from "@lucide/astro";
 
   function makeRow(item: { nombre: string; monto: number }, isFirst: boolean) {
     const row = document.createElement("div");
-    row.className = "flex h-10 items-center justify-between gap-2 rounded-md  bg-white/80 pl-2 pr-4 text-[0.625rem]";
+    row.className = "flex h-9 items-center justify-between gap-2 rounded-md  bg-white/80 pl-2 pr-4 text-[0.625rem]";
     row.style.cssText = `
       transform: scaleX(${isFirst ? "1" : "0.8"});
       transform-origin: center;

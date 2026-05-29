@@ -2,6 +2,8 @@
 import "@fontsource-variable/manrope/wght.css";
 // Supports weights 100-900
 import "@fontsource-variable/fraunces/wght.css";
+// Supports weights 200-900
+import '@fontsource-variable/mona-sans/wght.css';
 ---
 
 <!doctype html>
@@ -23,10 +25,11 @@ import "@fontsource-variable/fraunces/wght.css";
   @import "tailwindcss";
 
   @theme {
-    --font-obli: "Fraunces Variable", serif;
+    --font-obli:  'Mona Sans Variable', sans-serif;
     --color-pink: #f0007f;
     --color-orange: #f77c1e;
     --color-brand-black: #0a0a0f;
+    --font-manrope:"Manrope Variable", sans-serif;
   }
 
   :root {
@@ -66,6 +69,7 @@ import "@fontsource-variable/fraunces/wght.css";
     margin: 0;
     background: #f9f9f9;
     color: #111;
+    overflow-x:hidden;
   }
 
   /* ── Animate system ── */

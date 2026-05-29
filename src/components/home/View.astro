@@ -2,6 +2,8 @@
 import Image from "astro/components/Image.astro";
 import Hero from "../ui/Hero.astro";
 import Animation from "../ui/Animation.astro";
+import ChatBot from "../ui/ChatBot.astro";
+import AutomatizationDemo from "./AutomatizationDemo.astro";
 ---
 
 <div style="background: var(--gradient-bg); color: var(--white)">
@@ -9,7 +11,7 @@ import Animation from "../ui/Animation.astro";
 
   <!-- HERO SECTION -->
   <section
-    class="max-w-[1280px] mx-auto px-8 py-28 d:py-40 grid md:grid-cols-2 items-center gap-16"
+    class="max-w-[1280px] mx-auto px-8 py-28 d:py-40 grid md:grid-cols-2 items-stretch gap-16"
   >
     <!-- Left -->
     <div class="flex flex-col gap-3 md:gap-6">
@@ -18,13 +20,13 @@ import Animation from "../ui/Animation.astro";
       <!-- Headline -->
       <h1
         data-animate="fade-in"
-        class="text-3xl md:text-6xl leading-none tracking-[-0.025em] font-black text-white mt-[18px] mb-[22px] text-balance"
+        class="text-3xl md:text-6xl font-obli leading-none tracking-[-0.025em] font-black text-white mt-[18px] mb-[22px] text-balance"
       >
         Tu socio diseñado para </br>
         <span class="relative ">
           <span
             id="rotating-word"
-            class="font-black h-10 text-3xl md:text-5xl"
+            class="font-black h-10 text-3xl md:text-5xl font-manrope"
 
             ></span
           >
@@ -57,7 +59,8 @@ import Animation from "../ui/Animation.astro";
 
     <!-- Right: Mock UI -->
     <div class="relative hero-images">
-      <Animation />
+        <AutomatizationDemo />
+
     </div>
   </section>
 
@@ -224,7 +227,7 @@ import Animation from "../ui/Animation.astro";
     const span = document.createElement("span");
     span.textContent = name;
     span.className =
-      "text-[0.8rem] font-bold tracking-[0.1em] text-black/35 whitespace-nowrap uppercase";
+      "text-[1rem] font-black  tracking-[0.1em] text-black/35 whitespace-nowrap uppercase";
     track.appendChild(span);
   });
 
