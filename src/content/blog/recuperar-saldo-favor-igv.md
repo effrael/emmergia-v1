@@ -1,7 +1,7 @@
 ---
 title: "Cómo Recuperar tu Saldo a Favor del IGV: El Dinero que SUNAT te Debe y Probablemente No Estás Reclamando"
 description: "Miles de PYMES peruanas tienen dinero 'estancado' en SUNAT que les pertenece por ley. Se llama saldo a favor del IGV, y la mayoría de empresarios no sabe que puede pedirlo de vuelta."
-date: 2026-05-20
+date: 2026-06-20
 category: "Finanzas"
 readTime: "8 min"
 ---

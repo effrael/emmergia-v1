@@ -1,7 +1,7 @@
 ---
 title: "Factura Electrónica 2026: Todo lo que Necesitas Saber para No Recibir una Multa de S/ 5,500"
 description: "En 2025, SUNAT multó a miles de empresas por errores en comprobantes electrónicos. Aprende a emitir correctamente y protege tu negocio de multas de hasta S/ 5,500."
-date: 2026-05-16
+date: 2026-06-16
 category: "Facturación Digital"
 readTime: "7 min"
 ---

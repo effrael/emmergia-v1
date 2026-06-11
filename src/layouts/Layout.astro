@@ -4,6 +4,7 @@ import "@fontsource-variable/manrope/wght.css";
 import "@fontsource-variable/fraunces/wght.css";
 // Supports weights 200-900
 import '@fontsource-variable/mona-sans/wght.css';
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <!doctype html>
@@ -14,7 +15,8 @@ import '@fontsource-variable/mona-sans/wght.css';
     <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
     <link rel="icon" href="/favicon.webp" />
     <meta name="generator" content={Astro.generator} />
-    <title>EMMERGIA - Estudio contable con IA</title>
+    <title>EMMERGIA - Consultora de servicios empresariales con IA</title>
+    <ClientRouter />
   </head>
   <body>
     <slot />
@@ -72,6 +74,22 @@ import '@fontsource-variable/mona-sans/wght.css';
     overflow-x:hidden;
   }
 
+  /* ── View Transitions ── */
+  ::view-transition-old(root) {
+    animation: 250ms ease-out both fade-out;
+  }
+  ::view-transition-new(root) {
+    animation: 350ms ease-out both fade-in;
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
   /* ── Animate system ── */
   [data-animate] {
     transition-property: opacity, transform;
@@ -94,20 +112,23 @@ import '@fontsource-variable/mona-sans/wght.css';
 </style>
 
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const delay = el.dataset.animateDelay ?? "0";
-          el.style.setProperty("--animate-delay", `${delay}ms`);
-          el.classList.add("is-visible");
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  function initAnimations() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = el.dataset.animateDelay ?? "0";
+            el.style.setProperty("--animate-delay", `${delay}ms`);
+            el.classList.add("is-visible");
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+  }
 
-  document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+  document.addEventListener("astro:page-load", initAnimations);
 </script>

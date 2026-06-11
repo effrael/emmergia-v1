@@ -1,7 +1,7 @@
 ---
 title: "Contrato de Arrendamiento para tu Negocio: Cómo Hacerlo Seguro, Sólido y a Prueba de Disputas"
 description: "El 60% de los conflictos legales entre empresas y propietarios en Perú se originan en contratos deficientes. Conoce los 12 elementos esenciales y las 5 cláusulas trampa que debes evitar."
-date: 2026-05-21
+date: 2026-06-21
 category: "Legal Empresarial"
 readTime: "9 min"
 ---

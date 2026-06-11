@@ -1,7 +1,7 @@
 ---
 title: "¿Qué Pasa si No Pago Mis Impuestos a Tiempo en Perú? La Cronología del Desastre (y Cómo Salir de Él)"
 description: "Un empresario que debe a SUNAT y no actúa puede terminar con cuentas embargadas y el negocio cerrado. Conoce la cronología real y cómo salir de cada etapa."
-date: 2026-05-19
+date: 2026-06-19
 category: "Crisis Tributaria"
 readTime: "8 min"
 ---

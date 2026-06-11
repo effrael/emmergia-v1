@@ -296,103 +296,140 @@ const recursos = [
      SCRIPT
      ============================================================ -->
 <script>
-  const header = document.getElementById("site-header") as HTMLElement;
-  const HEADER_H = 64;
-  const initialBg = header.dataset.initialBg ?? "transparent";
+  let _headerController: AbortController | null = null;
 
-  function updateHeader() {
-    let bg = window.scrollY > 10 ? "#000" : initialBg;
+  function initHeader() {
+    // Limpia listeners anteriores antes de registrar nuevos
+    if (_headerController) _headerController.abort();
+    _headerController = new AbortController();
+    const { signal } = _headerController;
 
-    // Override si una sección con data-header-bg cubre el header
-    document
-      .querySelectorAll<HTMLElement>("[data-header-bg]")
-      .forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= HEADER_H && rect.bottom > HEADER_H) {
-          bg = section.dataset.headerBg!;
-        }
-      });
+    const header = document.getElementById("site-header") as HTMLElement;
+    if (!header) return;
+    const HEADER_H = 64;
+    const initialBg = header.dataset.initialBg ?? "transparent";
 
-    header.style.background = bg;
-  }
-
-  window.addEventListener("scroll", updateHeader, { passive: true });
-  updateHeader();
-
-  // Recursos dropdown
-  const recursosBtn = document.getElementById("recursos-btn");
-  const recursosPanel = document.getElementById("recursos-panel");
-
-  const recursosChevron = document.getElementById("recursos-chevron");
-
-  function openRecursos() {
-    recursosPanel!.classList.remove(
-      "opacity-0",
-      "pointer-events-none",
-      "translate-y-1",
-    );
-    recursosPanel!.classList.add("opacity-100", "translate-y-0");
-    recursosChevron!.style.transform = "rotate(180deg)";
-  }
-  function closeRecursos() {
-    recursosPanel!.classList.add(
-      "opacity-0",
-      "pointer-events-none",
-      "translate-y-1",
-    );
-    recursosPanel!.classList.remove("opacity-100", "translate-y-0");
-    recursosChevron!.style.transform = "rotate(0deg)";
-  }
-
-  recursosBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = !recursosPanel!.classList.contains("opacity-0");
-    isOpen ? closeRecursos() : openRecursos();
-  });
-
-  document.addEventListener("click", () => closeRecursos());
-
-  // Recursos acordeón móvil
-  const recursosMobileBtn = document.getElementById("recursos-mobile-btn");
-  const recursosMobilePanel = document.getElementById("recursos-mobile-panel");
-  const recursosMobileChevron = document.getElementById(
-    "recursos-mobile-chevron",
-  );
-  let recursosMobileOpen = false;
-
-  recursosMobileBtn?.addEventListener("click", () => {
-    recursosMobileOpen = !recursosMobileOpen;
-    if (recursosMobileOpen) {
-      recursosMobilePanel!.style.maxHeight =
-        recursosMobilePanel!.scrollHeight + "px";
-      recursosMobileChevron!.style.transform = "rotate(180deg)";
-    } else {
-      recursosMobilePanel!.style.maxHeight = "0";
-      recursosMobileChevron!.style.transform = "rotate(0deg)";
+    function updateHeader() {
+      let bg = window.scrollY > 10 ? "#000" : initialBg;
+      document
+        .querySelectorAll<HTMLElement>("[data-header-bg]")
+        .forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= HEADER_H && rect.bottom > HEADER_H) {
+            bg = section.dataset.headerBg!;
+          }
+        });
+      header.style.background = bg;
     }
-  });
 
-  const openBtn = document.getElementById("menu-open");
-  const closeBtn = document.getElementById("menu-close");
-  const menu = document.getElementById("mobile-menu");
+    window.addEventListener("scroll", updateHeader, { passive: true, signal });
+    updateHeader();
 
-  function openMenu() {
-    menu!.style.transform = "translateY(0)";
-    menu!.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    // Página activa — desktop
+    const currentPath = window.location.pathname;
+
+    // Recursos button — activo si algún sub-link coincide
+    const recursosLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("#recursos-panel a[href]"));
+    const recursosActive = recursosLinks.some(a => currentPath.startsWith(a.getAttribute("href")!));
+    const recursosBtn2 = document.getElementById("recursos-btn");
+    if (recursosBtn2) {
+      if (recursosActive) {
+        recursosBtn2.classList.remove("text-white/75", "hover:text-white", "hover:bg-white/[0.2]");
+        recursosBtn2.classList.add("text-white", "bg-white/[0.2]", "font-bold");
+      } else {
+        recursosBtn2.classList.remove("text-white", "bg-white/[0.2]", "font-bold");
+        recursosBtn2.classList.add("text-white/75", "hover:text-white", "hover:bg-white/[0.2]");
+      }
+    }
+
+    document.querySelectorAll<HTMLAnchorElement>("#site-header nav a[href]").forEach((a) => {
+      const href = a.getAttribute("href")!;
+      if (href !== "#" && currentPath.startsWith(href)) {
+        a.classList.remove("text-white/75", "hover:text-white", "hover:bg-white/[0.2]", "font-medium");
+        a.classList.add("text-white", "bg-white/[0.2]", "font-bold");
+      } else {
+        a.classList.remove("text-white", "bg-white/[0.2]");
+        a.classList.add("text-white/75", "hover:text-white", "hover:bg-white/[0.2]");
+      }
+    });
+
+    // Página activa — móvil
+    document.querySelectorAll<HTMLAnchorElement>("#mobile-menu a[href]").forEach((a) => {
+      const href = a.getAttribute("href")!;
+      const span = a.querySelector("span");
+      if (!span) return;
+      if (href !== "#" && currentPath.startsWith(href)) {
+        span.classList.remove("text-white", "group-hover:opacity-70");
+        span.classList.add("text-transparent", "bg-clip-text", "bg-gradient-to-r", "from-pink", "to-orange");
+      } else {
+        span.classList.remove("text-transparent", "bg-clip-text", "bg-gradient-to-r", "from-pink", "to-orange");
+        span.classList.add("text-white", "group-hover:opacity-70");
+      }
+    });
+
+    // Recursos dropdown
+    const recursosBtn = document.getElementById("recursos-btn");
+    const recursosPanel = document.getElementById("recursos-panel");
+    const recursosChevron = document.getElementById("recursos-chevron");
+
+    function openRecursos() {
+      recursosPanel!.classList.remove("opacity-0", "pointer-events-none", "translate-y-1");
+      recursosPanel!.classList.add("opacity-100", "translate-y-0");
+      recursosChevron!.style.transform = "rotate(180deg)";
+    }
+    function closeRecursos() {
+      recursosPanel!.classList.add("opacity-0", "pointer-events-none", "translate-y-1");
+      recursosPanel!.classList.remove("opacity-100", "translate-y-0");
+      recursosChevron!.style.transform = "rotate(0deg)";
+    }
+
+    recursosBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !recursosPanel!.classList.contains("opacity-0");
+      isOpen ? closeRecursos() : openRecursos();
+    }, { signal });
+
+    document.addEventListener("click", () => closeRecursos(), { signal });
+
+    // Recursos acordeón móvil
+    const recursosMobileBtn = document.getElementById("recursos-mobile-btn");
+    const recursosMobilePanel = document.getElementById("recursos-mobile-panel");
+    const recursosMobileChevron = document.getElementById("recursos-mobile-chevron");
+    let recursosMobileOpen = false;
+
+    recursosMobileBtn?.addEventListener("click", () => {
+      recursosMobileOpen = !recursosMobileOpen;
+      if (recursosMobileOpen) {
+        recursosMobilePanel!.style.maxHeight = recursosMobilePanel!.scrollHeight + "px";
+        recursosMobileChevron!.style.transform = "rotate(180deg)";
+      } else {
+        recursosMobilePanel!.style.maxHeight = "0";
+        recursosMobileChevron!.style.transform = "rotate(0deg)";
+      }
+    }, { signal });
+
+    const openBtn = document.getElementById("menu-open");
+    const closeBtn = document.getElementById("menu-close");
+    const menu = document.getElementById("mobile-menu");
+
+    function openMenu() {
+      menu!.style.transform = "translateY(0)";
+      menu!.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeMenu() {
+      menu!.style.transform = "translateY(-100%)";
+      menu!.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    openBtn?.addEventListener("click", openMenu, { signal });
+    closeBtn?.addEventListener("click", closeMenu, { signal });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    }, { signal });
   }
 
-  function closeMenu() {
-    menu!.style.transform = "translateY(-100%)";
-    menu!.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
-
-  openBtn?.addEventListener("click", openMenu);
-  closeBtn?.addEventListener("click", closeMenu);
-
-  // Cerrar con Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
+  document.addEventListener("astro:page-load", initHeader);
 </script>

@@ -11,10 +11,10 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
 
   <!-- HERO SECTION -->
   <section
-    class="max-w-[1280px] mx-auto px-8 py-28 d:py-40 grid md:grid-cols-2 items-stretch gap-16"
+    class="max-w-[1280px] mx-auto px-8 py-28 d:py-40 grid md:grid-cols-7 gap-12"
   >
     <!-- Left -->
-    <div class="flex flex-col gap-3 md:gap-6">
+    <div class="flex flex-col gap-3 col-span-4 md:gap-6">
       <!-- Badge -->
 
       <!-- Headline -->
@@ -22,11 +22,11 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
         data-animate="fade-in"
         class="text-3xl md:text-6xl font-obli leading-none tracking-[-0.025em] font-black text-white mt-[18px] mb-[22px] text-balance"
       >
-        Tu socio diseñado para </br>
+        Tu socio <br/> diseñado para </br>
         <span class="relative ">
           <span
             id="rotating-word"
-            class="font-black h-10 text-3xl md:text-5xl font-manrope"
+            class="font-black text-3xl md:text-6xl"
 
             ></span
           >
@@ -58,7 +58,7 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
     </div>
 
     <!-- Right: Mock UI -->
-    <div class="relative hero-images">
+    <div class="relative hero-images col-span-3">
         <AutomatizationDemo />
 
     </div>
@@ -117,7 +117,7 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
   }
   @keyframes float-secondary {
     0%,  100% { transform: translateY(0px);   }
-    50%        { transform: translateY(-12px); }
+    50%        { transform: translateY(-10px); }
   }
 
   @keyframes letter-enter {
@@ -152,15 +152,15 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
 
   // ── Rotating word ──
   const words = [
-    "crecer tu negocio.",
-    "crecer tu patrimonio.",
-    "aumentar tus ventas.",
-    "reducir tus procesos.",
+    "crecer tu negocio",
+    "crecer tu patrimonio",
+    "aumentar tus ventas",
+    "reducir tus procesos",
   ];
   let index = 0;
   const el = document.getElementById("rotating-word") as HTMLElement;
 
-  const BASE  = 0.12;   // s — delay inicial (igual que referencia)
+  const BASE  = 0.20;   // s — delay inicial (igual que referencia)
   const STEP  = 0.015;  // s — stagger entre letras
   const DUR   = 0.75;   // s — duración de cada letra
 
@@ -171,6 +171,7 @@ import AutomatizationDemo from "./AutomatizationDemo.astro";
       span.textContent = char === " " ? "\u00A0" : char;
       span.style.cssText = `
         display: inline-block;
+        padding-bottom: 0.15em;
         background: linear-gradient(to right, #f0007f, #f77c1e);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
